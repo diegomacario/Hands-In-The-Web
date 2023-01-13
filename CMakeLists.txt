@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.11.1 FATAL_ERROR)
 
 project(Hands-In-The-Web)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -std=c++17")
-
 include_directories("${CMAKE_SOURCE_DIR}/inc"
                     "${CMAKE_SOURCE_DIR}/dependencies/alembic"
                     "${CMAKE_SOURCE_DIR}/dependencies/cgltf"
@@ -84,16 +82,16 @@ set(project_sources
     src/Triangle.cpp
     src/Utility.cpp
     src/Window.cpp
-    dependencies/win/src/cgltf/cgltf.c
-    dependencies/win/src/dr_libs/dr_wav.c
-    #dependencies/win/src/imgui/imgui.cpp
-    #dependencies/win/src/imgui/imgui_demo.cpp
-    #dependencies/win/src/imgui/imgui_draw.cpp
-    #dependencies/win/src/imgui/imgui_impl_glfw.cpp
-    #dependencies/win/src/imgui/imgui_impl_opengl3.cpp
-    #dependencies/win/src/imgui/imgui_tables.cpp
-    #dependencies/win/src/imgui/imgui_widgets.cpp
-    dependencies/win/src/stb_image/stb_image.cpp)
+    dependencies/cgltf/cgltf/cgltf.c
+    dependencies/dr_libs/dr_libs/dr_wav.c
+    #dependencies/imgui/imgui/imgui.cpp
+    #dependencies/imgui/imgui/imgui_demo.cpp
+    #dependencies/imgui/imgui/imgui_draw.cpp
+    #dependencies/imgui/imgui/imgui_impl_glfw.cpp
+    #dependencies/imgui/imgui/imgui_impl_opengl3.cpp
+    #dependencies/imgui/imgui/imgui_tables.cpp
+    #dependencies/imgui/imgui/imgui_widgets.cpp
+    dependencies/stb_image/stb_image/stb_image.cpp)
 
 # This path must be relative to the location of the build folder
 set(project_resources "../resources@resources")
@@ -101,9 +99,9 @@ set(project_resources "../resources@resources")
 set(CMAKE_EXECUTABLE_SUFFIX ".html")
 
 # For debugging
-#set(CMAKE_CXX_FLAGS "-O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ASSERTIONS=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
+#set(CMAKE_CXX_FLAGS "-fvisibility=hidden -std=c++17 -O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ASSERTIONS=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
 # For releasing
-set(CMAKE_CXX_FLAGS "-O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
+set(CMAKE_CXX_FLAGS "-fvisibility=hidden -std=c++17 -O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
 
 # Uncomment this line and the imgui .cpp files above to enable IMGUI
 #add_definitions(-DENABLE_IMGUI)

@@ -2,6 +2,7 @@
 #define FINITE_STATE_MACHINE_H
 
 #include <unordered_map>
+#include <string>
 #include <memory>
 
 #include "State.h"

@@ -77,9 +77,7 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
 
 void PlayState::enter()
 {
-#ifdef __EMSCRIPTEN__
-   mPlayer.setModelID(myPlayerModelID);
-#endif
+
 }
 
 void PlayState::processInput()
@@ -112,7 +110,7 @@ void PlayState::processInput()
       mWindow->resetMouseMoved();
    }
 
-   // Adjust the distance between the player and the camera
+   // Adjust the distance between the target and the camera
    if (mWindow->scrollWheelMoved())
    {
       mCamera3.processScrollWheelMovement(mWindow->getScrollYOffset());
