@@ -109,9 +109,6 @@
     <ClCompile Include="..\dependencies\imgui\imgui\imgui_tables.cpp">
       <Filter>imgui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Line.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\SceneABC.cpp">
       <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
     </ClCompile>
@@ -241,9 +238,6 @@
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\Sky.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Line.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\SceneGraph.h">
