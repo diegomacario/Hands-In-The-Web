@@ -103,6 +103,8 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 # For releasing
 set(CMAKE_CXX_FLAGS "-fvisibility=hidden -std=c++17 -O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
 
+#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --bind")
+
 # Uncomment this line and the imgui .cpp files above to enable IMGUI
 #add_definitions(-DENABLE_IMGUI)
 
