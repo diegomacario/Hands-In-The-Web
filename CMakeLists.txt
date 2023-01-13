@@ -2,14 +2,21 @@ cmake_minimum_required(VERSION 3.11.1 FATAL_ERROR)
 
 project(Hands-In-The-Web)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -std=c++17")
+
 include_directories("${CMAKE_SOURCE_DIR}/inc"
+                    "${CMAKE_SOURCE_DIR}/dependencies/alembic"
                     "${CMAKE_SOURCE_DIR}/dependencies/cgltf"
+					"${CMAKE_SOURCE_DIR}/dependencies/dr_libs"
                     "${CMAKE_SOURCE_DIR}/dependencies/glad"
                     "${CMAKE_SOURCE_DIR}/dependencies/GLFW"
                     "${CMAKE_SOURCE_DIR}/dependencies/glm"
                     "${CMAKE_SOURCE_DIR}/dependencies/imgui"
                     "${CMAKE_SOURCE_DIR}/dependencies/KHR"
+					"${CMAKE_SOURCE_DIR}/dependencies/OpenEXR"
                     "${CMAKE_SOURCE_DIR}/dependencies/stb_image")
+
+file(GLOB emscripten_libs ${CMAKE_SOURCE_DIR}/dependencies/emscripten_lib/*.a)
 
 set(project_headers
     inc/AlembicMesh.h
@@ -105,3 +112,5 @@ set(CMAKE_CXX_FLAGS "-O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -
 #add_definitions(-DENABLE_AUDIO)
 
 add_executable(${PROJECT_NAME} ${project_headers} ${project_sources})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE ${emscripten_libs})
