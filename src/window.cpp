@@ -124,7 +124,7 @@ Window::Window(const std::string& title)
    , mMultisampleFBO(0)
    , mMultisampleTexture(0)
    , mMultisampleRBO(0)
-   , mNumOfSamples(8)
+   , mNumOfSamples(1)
 #endif
 {
 
