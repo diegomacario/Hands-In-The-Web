@@ -30,6 +30,7 @@
     <ClInclude Include="..\dependencies\imgui\imgui\imstb_textedit.h" />
     <ClInclude Include="..\dependencies\imgui\imgui\imstb_truetype.h" />
     <ClInclude Include="..\dependencies\stb_image\stb_image\stb_image.h" />
+    <ClInclude Include="..\inc\AlembicMesh.h" />
     <ClInclude Include="..\inc\AnimatedMesh.h" />
     <ClInclude Include="..\inc\AudioEngine.h" />
     <ClInclude Include="..\inc\AudioSource.h" />
@@ -148,6 +149,7 @@
     <ClCompile Include="..\dependencies\imgui\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\dependencies\imgui\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\dependencies\stb_image\stb_image\stb_image.cpp" />
+    <ClCompile Include="..\src\AlembicMesh.cpp" />
     <ClCompile Include="..\src\AnimatedMesh.cpp" />
     <ClCompile Include="..\src\AudioEngine.cpp" />
     <ClCompile Include="..\src\AudioSource.cpp" />

@@ -46,6 +46,10 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
                                                                                                 "resources/shaders/diffuse_illumination.frag");
    configureLights(mStaticMeshWithNormalsShader);
 
+   // Initialize the hands shader
+   mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/hands.vert",
+                                                                                "resources/shaders/hands.frag");
+
    loadCharacters();
    loadLevel();
 
@@ -73,8 +77,15 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
    }
 
    mScene->seek(0.0);
-   auto mesh = mScene->getMesh();
-   std::cout << "Vertex count: " << static_cast<int>(mesh->getPoints().size()) << '\n';
+   wabc::IMesh* mesh = mScene->getMesh();
+   mAlembicMesh.InitializeBuffers(mesh);
+
+   int positionsAttribLoc = mHandsShader->getAttributeLocation("position");
+   int normalsAttribLoc   = mHandsShader->getAttributeLocation("normal");
+   mAlembicMesh.ConfigureVAO(positionsAttribLoc, normalsAttribLoc);
+
+   std::tuple<double, double> timeRange = mScene->getTimeRange();
+   mAlembicAnimationDuration = static_cast<float>(std::get<1>(timeRange));
 }
 
 void PlayState::enter()
@@ -125,6 +136,13 @@ void PlayState::update(float deltaTime)
    mAudioEngine->setListenerData(mPlayer.getCameraPosition(), mPlayer.getVelocity(), viewVector, cameraUp);
    mAudioEngine->update();
 #endif
+
+   // Update the hands
+   mAlembicAnimationPlaybackTime += deltaTime;
+   if (mAlembicAnimationPlaybackTime > mAlembicAnimationDuration)
+   {
+      mAlembicAnimationPlaybackTime -= mAlembicAnimationDuration;
+   }
 }
 
 void PlayState::render()
@@ -149,6 +167,8 @@ void PlayState::render()
    renderLevel();
 
    renderPlayer();
+
+   renderHands();
 
    // Remove translation from the view matrix before rendering the skybox
    mSky.Render(mPlayer.getPerspectiveProjectionMatrix() * glm::mat4(glm::mat3(mPlayer.getViewMatrix())));
@@ -382,4 +402,20 @@ void PlayState::renderPlayer()
    }
 
    mAnimatedMeshShader->use(false);
+}
+
+void PlayState::renderHands()
+{
+   mScene->seek(mAlembicAnimationPlaybackTime);
+   wabc::IMesh* mesh = mScene->getMesh();
+   mAlembicMesh.UpdateBuffers(mesh);
+
+   mHandsShader->use(true);
+   mHandsShader->setUniformMat4("model",      glm::mat4(1.0f));
+   mHandsShader->setUniformMat4("view",       mPlayer.getViewMatrix());
+   mHandsShader->setUniformMat4("projection", mPlayer.getPerspectiveProjectionMatrix());
+
+   mAlembicMesh.Render();
+
+   mHandsShader->use(false);
 }

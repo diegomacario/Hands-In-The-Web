@@ -15,6 +15,7 @@
 #include "Player.h"
 #include "Sky.h"
 #include "WebAlembicViewer.h"
+#include "AlembicMesh.h"
 
 class PlayState : public State
 {
@@ -59,6 +60,7 @@ private:
 
    void renderLevel();
    void renderPlayer();
+   void renderHands();
 
    std::shared_ptr<FiniteStateMachine>          mFSM;
 
@@ -71,6 +73,7 @@ private:
    std::shared_ptr<Shader>                      mAnimatedMeshShader;
    std::shared_ptr<Shader>                      mStaticMeshWithoutNormalsShader;
    std::shared_ptr<Shader>                      mStaticMeshWithNormalsShader;
+   std::shared_ptr<Shader>                      mHandsShader;
 
    // Character data
    std::vector<std::shared_ptr<Texture>>        mCharacterTextures;
@@ -92,6 +95,10 @@ private:
    float                                        mPlaybackSpeed = 1.0f;
 
    wabc::IScenePtr                              mScene;
+
+   AlembicMesh                                  mAlembicMesh;
+   float                                        mAlembicAnimationDuration;
+   float                                        mAlembicAnimationPlaybackTime = 0.0f;
 };
 
 #endif

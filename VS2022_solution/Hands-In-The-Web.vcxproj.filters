@@ -328,6 +328,9 @@
     <ClCompile Include="..\src\pch.cpp">
       <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\AlembicMesh.cpp">
+      <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\dependencies\stb_image\stb_image\stb_image.h">
@@ -514,6 +517,9 @@
       <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\VectorMath.h">
+      <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AlembicMesh.h">
       <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
     </ClInclude>
   </ItemGroup>
