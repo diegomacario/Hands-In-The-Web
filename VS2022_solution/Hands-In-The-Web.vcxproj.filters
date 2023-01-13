@@ -316,6 +316,18 @@
     <ClCompile Include="..\src\Line.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\SceneABC.cpp">
+      <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer.cpp">
+      <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SceneGraph.cpp">
+      <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pch.cpp">
+      <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\dependencies\stb_image\stb_image\stb_image.h">
@@ -483,6 +495,27 @@
     <ClInclude Include="..\inc\Line.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\inc\SceneGraph.h">
+      <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\WebAlembicViewer.h">
+      <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\sfbxTypes.h">
+      <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\sfbxRawVector.h">
+      <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\sfbxMeta.h">
+      <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\pch.h">
+      <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\VectorMath.h">
+      <Filter>Hands-In-The-Web\Header Files\Alembic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="glad">
@@ -610,6 +643,12 @@
     </Filter>
     <Filter Include="draco\compression\point_cloud\algorithms">
       <UniqueIdentifier>{25707283-42a9-4cc2-9630-89ceb8558436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hands-In-The-Web\Header Files\Alembic">
+      <UniqueIdentifier>{f29d7822-81bd-4857-87ca-7923d0aa3006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hands-In-The-Web\Source Files\Alembic">
+      <UniqueIdentifier>{23ee70c0-85f7-4a66-b404-d6ce1c2be39a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

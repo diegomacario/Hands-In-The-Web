@@ -46,9 +46,8 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
                                                                                                 "resources/shaders/diffuse_illumination.frag");
    configureLights(mStaticMeshWithNormalsShader);
 
-   std::shared_ptr<Texture> rainbowUVCheckerMap = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/uv/rainbow_uv_checker_map.png");
-   loadCharacters(rainbowUVCheckerMap);
-   loadLevel(rainbowUVCheckerMap);
+   loadCharacters();
+   loadLevel();
 
    mWorld = std::make_unique<World>(mLevelCollisionGeometry);
 
@@ -62,6 +61,20 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
    // Load sounds
    //mAudioEngine->loadSound("resources/sounds/....wav");
 #endif
+
+   mScene = wabc::LoadScene("resources/animations/handy.abc");
+   if (mScene)
+   {
+      std::cout << "Alembic scene loaded successfully!" << '\n';
+   }
+   else
+   {
+      std::cout << "Failed to load Alembic scene" << '\n';
+   }
+
+   mScene->seek(0.0);
+   auto mesh = mScene->getMesh();
+   std::cout << "Vertex count: " << static_cast<int>(mesh->getPoints().size()) << '\n';
 }
 
 void PlayState::enter()
@@ -178,7 +191,7 @@ void PlayState::setupCameraForTouchControl(bool touchControlsEnabled)
 }
 #endif
 
-void PlayState::loadCharacters(const std::shared_ptr<Texture>& rainbowUVCheckerMap)
+void PlayState::loadCharacters()
 {
    std::vector<std::string> characterTextureFilePaths { "resources/models/humans/woman.png" };
 
@@ -258,7 +271,7 @@ void PlayState::loadCharacters(const std::shared_ptr<Texture>& rainbowUVCheckerM
    }
 }
 
-void PlayState::loadLevel(const std::shared_ptr<Texture>& rainbowUVCheckerMap)
+void PlayState::loadLevel()
 {
    // Load the texture of the level
    mLevelTexture = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/uv/uv_grid.png");

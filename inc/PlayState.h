@@ -14,6 +14,7 @@
 #include "World.h"
 #include "Player.h"
 #include "Sky.h"
+#include "WebAlembicViewer.h"
 
 class PlayState : public State
 {
@@ -48,8 +49,8 @@ public:
 
 private:
 
-   void loadCharacters(const std::shared_ptr<Texture>& rainbowUVCheckerMap);
-   void loadLevel(const std::shared_ptr<Texture>& rainbowUVCheckerMap);
+   void loadCharacters();
+   void loadLevel();
    void configureLights(const std::shared_ptr<Shader>& shader);
 
 #ifdef ENABLE_IMGUI
@@ -89,6 +90,8 @@ private:
    Sky                                          mSky;
 
    float                                        mPlaybackSpeed = 1.0f;
+
+   wabc::IScenePtr                              mScene;
 };
 
 #endif

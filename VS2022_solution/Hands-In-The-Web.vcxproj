@@ -42,6 +42,11 @@
     <ClInclude Include="..\inc\CrossFadeTarget.h" />
     <ClInclude Include="..\inc\FlyCam.h" />
     <ClInclude Include="..\inc\Line.h" />
+    <ClInclude Include="..\inc\pch.h" />
+    <ClInclude Include="..\inc\SceneGraph.h" />
+    <ClInclude Include="..\inc\sfbxMeta.h" />
+    <ClInclude Include="..\inc\sfbxRawVector.h" />
+    <ClInclude Include="..\inc\sfbxTypes.h" />
     <ClInclude Include="..\inc\StaticMesh.h" />
     <ClInclude Include="..\inc\OctreeNode.h" />
     <ClInclude Include="..\inc\Octree.h" />
@@ -49,6 +54,8 @@
     <ClInclude Include="..\inc\SimpleMesh.h" />
     <ClInclude Include="..\inc\Sky.h" />
     <ClInclude Include="..\inc\TriangleAABB.h" />
+    <ClInclude Include="..\inc\VectorMath.h" />
+    <ClInclude Include="..\inc\WebAlembicViewer.h" />
     <ClInclude Include="..\inc\World.h" />
     <ClInclude Include="..\inc\FiniteStateMachine.h" />
     <ClInclude Include="..\inc\Frame.h" />
@@ -152,6 +159,10 @@
     <ClCompile Include="..\src\CrossFadeControllerMultiple.cpp" />
     <ClCompile Include="..\src\CrossFadeTarget.cpp" />
     <ClCompile Include="..\src\Line.cpp" />
+    <ClCompile Include="..\src\pch.cpp" />
+    <ClCompile Include="..\src\Renderer.cpp" />
+    <ClCompile Include="..\src\SceneABC.cpp" />
+    <ClCompile Include="..\src\SceneGraph.cpp" />
     <ClCompile Include="..\src\StaticMesh.cpp" />
     <ClCompile Include="..\src\OctreeNode.cpp" />
     <ClCompile Include="..\src\Octree.cpp" />
@@ -238,8 +249,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\inc;$(ProjectDir)\..\dependencies\draco;$(ProjectDir)\..\dependencies\glad;$(ProjectDir)\..\dependencies\KHR;$(ProjectDir)\..\dependencies\glm;$(ProjectDir)\..\dependencies\cgltf;$(ProjectDir)\..\dependencies\imgui;$(ProjectDir)\..\dependencies\GLFW;$(ProjectDir)\..\dependencies\stb_image;$(ProjectDir)\..\dependencies\AL;$(ProjectDir)\..\dependencies\dr_libs;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\dependencies\GLFW\GLFW\lib\win\debug;$(ProjectDir)\..\dependencies\AL\AL\lib\win\debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\..\inc;$(ProjectDir)\..\dependencies\draco;$(ProjectDir)\..\dependencies\glad;$(ProjectDir)\..\dependencies\KHR;$(ProjectDir)\..\dependencies\glm;$(ProjectDir)\..\dependencies\cgltf;$(ProjectDir)\..\dependencies\imgui;$(ProjectDir)\..\dependencies\GLFW;$(ProjectDir)\..\dependencies\stb_image;$(ProjectDir)\..\dependencies\AL;$(ProjectDir)\..\dependencies\alembic;$(ProjectDir)\..\dependencies\OpenEXR;$(ProjectDir)\..\dependencies\dr_libs;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\dependencies\GLFW\GLFW\lib\win\debug;$(ProjectDir)\..\dependencies\alembic\alembic\lib;$(ProjectDir)\..\dependencies\OpenEXR\lib;$(ProjectDir)\..\dependencies\AL\AL\lib\win\debug;$(LibraryPath)</LibraryPath>
     <SourcePath>$(ProjectDir)\..\src;$(ProjectDir)\..\dependencies\draco;$(SourcePath)</SourcePath>
     <LocalDebuggerEnvironment>PATH=%PATH%;$(ProjectDir)..\dependencies\win\dll\debug$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
@@ -250,8 +261,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\inc;$(ProjectDir)\..\dependencies\draco;$(ProjectDir)\..\dependencies\glad;$(ProjectDir)\..\dependencies\KHR;$(ProjectDir)\..\dependencies\glm;$(ProjectDir)\..\dependencies\cgltf;$(ProjectDir)\..\dependencies\imgui;$(ProjectDir)\..\dependencies\GLFW;$(ProjectDir)\..\dependencies\stb_image;$(ProjectDir)\..\dependencies\AL;$(ProjectDir)\..\dependencies\dr_libs;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\dependencies\GLFW\GLFW\lib\win\release;$(ProjectDir)\..\dependencies\AL\AL\lib\win\release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\..\inc;$(ProjectDir)\..\dependencies\draco;$(ProjectDir)\..\dependencies\glad;$(ProjectDir)\..\dependencies\KHR;$(ProjectDir)\..\dependencies\glm;$(ProjectDir)\..\dependencies\cgltf;$(ProjectDir)\..\dependencies\imgui;$(ProjectDir)\..\dependencies\GLFW;$(ProjectDir)\..\dependencies\stb_image;$(ProjectDir)\..\dependencies\AL;$(ProjectDir)\..\dependencies\alembic;$(ProjectDir)\..\dependencies\OpenEXR;$(ProjectDir)\..\dependencies\dr_libs;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\dependencies\OpenEXR\lib;$(ProjectDir)\..\dependencies\GLFW\GLFW\lib\win\release;$(ProjectDir)\..\dependencies\alembic\alembic\lib;$(ProjectDir)\..\dependencies\AL\AL\lib\win\release;$(LibraryPath)</LibraryPath>
     <SourcePath>$(ProjectDir)\..\src;$(ProjectDir)\..\dependencies\draco;$(SourcePath)</SourcePath>
     <LocalDebuggerEnvironment>PATH=%PATH%;$(ProjectDir)..\dependencies\win\dll\release$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
@@ -273,13 +284,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;ENABLE_IMGUI;ENABLE_AUDIO;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;ENABLE_IMGUI;ENABLE_AUDIO;GLFW_INCLUDE_NONE;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;OpenAL32.lib;common.lib;ex-common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;OpenAL32.lib;common.lib;ex-common.lib;Half-2_5.lib;Iex-2_5.lib;IexMath-2_5.lib;Imath-2_5.lib;Alembic.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -304,15 +316,16 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;ENABLE_IMGUI;ENABLE_AUDIO;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;ENABLE_IMGUI;ENABLE_AUDIO;GLFW_INCLUDE_NONE;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;OpenAL32.lib;common.lib;ex-common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;OpenAL32.lib;common.lib;ex-common.lib;Half-2_5.lib;Iex-2_5.lib;IexMath-2_5.lib;Imath-2_5.lib;Alembic.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
