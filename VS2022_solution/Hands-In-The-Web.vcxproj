@@ -33,7 +33,6 @@
     <ClInclude Include="..\inc\AlembicMesh.h" />
     <ClInclude Include="..\inc\AudioEngine.h" />
     <ClInclude Include="..\inc\AudioSource.h" />
-    <ClInclude Include="..\inc\Camera.h" />
     <ClInclude Include="..\inc\Camera3.h" />
     <ClInclude Include="..\inc\pch.h" />
     <ClInclude Include="..\inc\SceneGraph.h" />
@@ -82,7 +81,6 @@
     <ClCompile Include="..\src\AlembicMesh.cpp" />
     <ClCompile Include="..\src\AudioEngine.cpp" />
     <ClCompile Include="..\src\AudioSource.cpp" />
-    <ClCompile Include="..\src\Camera.cpp" />
     <ClCompile Include="..\src\Camera3.cpp" />
     <ClCompile Include="..\src\pch.cpp" />
     <ClCompile Include="..\src\SceneABC.cpp" />

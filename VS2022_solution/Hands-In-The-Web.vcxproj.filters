@@ -25,9 +25,6 @@
     <ClCompile Include="..\dependencies\imgui\imgui\imgui_widgets.cpp">
       <Filter>imgui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Camera.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\FiniteStateMachine.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
     </ClCompile>
@@ -149,9 +146,6 @@
     </ClInclude>
     <ClInclude Include="..\dependencies\imgui\imgui\imstb_truetype.h">
       <Filter>imgui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Camera.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\FiniteStateMachine.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
