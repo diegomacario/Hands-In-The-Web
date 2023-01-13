@@ -7,12 +7,11 @@
 #ifdef ENABLE_AUDIO
 #include "AudioEngine.h"
 #endif
+#include "Camera3.h"
 #include "Texture.h"
 #include "AnimatedMesh.h"
 #include "Clip.h"
 #include "StaticMesh.h"
-#include "World.h"
-#include "Player.h"
 #include "Sky.h"
 #include "WebAlembicViewer.h"
 #include "AlembicMesh.h"
@@ -43,24 +42,21 @@ public:
    void render() override;
    void exit() override;
 
-   void setCameraFree(bool free);
 #ifdef __EMSCRIPTEN__
    void setupCameraForTouchControl(bool touchControlsEnabled);
 #endif
 
 private:
 
-   void loadCharacters();
-   void loadLevel();
    void configureLights(const std::shared_ptr<Shader>& shader);
 
 #ifdef ENABLE_IMGUI
    void userInterface();
 #endif
 
-   void renderLevel();
-   void renderPlayer();
    void renderHands();
+
+   void resetCamera();
 
    std::shared_ptr<FiniteStateMachine>          mFSM;
 
@@ -70,25 +66,11 @@ private:
    std::shared_ptr<AudioEngine>                 mAudioEngine;
 #endif
 
-   std::shared_ptr<Shader>                      mAnimatedMeshShader;
+   Camera3                                      mCamera3;
+
    std::shared_ptr<Shader>                      mStaticMeshWithoutNormalsShader;
    std::shared_ptr<Shader>                      mStaticMeshWithNormalsShader;
    std::shared_ptr<Shader>                      mHandsShader;
-
-   // Character data
-   std::vector<std::shared_ptr<Texture>>        mCharacterTextures;
-   std::vector<Skeleton>                        mCharacterBaseSkeletons;
-   std::vector<std::vector<AnimatedMesh>>       mCharacterMeshes;
-   std::vector<std::map<std::string, FastClip>> mCharacterClips;
-   std::vector<float>                           mCharacterJumpPlaybackSpeeds;
-
-   // Level data
-   std::shared_ptr<Texture>                     mLevelTexture;
-   std::vector<StaticMesh>                      mLevelMeshes;
-   std::vector<SimpleMesh>                      mLevelCollisionGeometry;
-   std::unique_ptr<World>                       mWorld;
-
-   Player                                       mPlayer;
 
    Sky                                          mSky;
 

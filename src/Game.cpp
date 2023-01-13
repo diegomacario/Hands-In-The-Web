@@ -123,12 +123,8 @@ void Game::updateWindowDimensions(int width, int height)
    mWindow->updateWindowDimensions(width, height);
 }
 
-void Game::setCameraFree(bool free)
+void  Game::enableTouchControlOfCamera(bool enable)
 {
-   mPlayState->setCameraFree(free);
-}
-
-void  Game::enableTouchControlOfCamera(bool enable) {
    mPlayState->setupCameraForTouchControl(enable);
 }
 #endif

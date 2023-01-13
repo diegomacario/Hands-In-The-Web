@@ -103,9 +103,6 @@
     <ClCompile Include="..\src\Camera3.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Player.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\PlayState.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
     </ClCompile>
@@ -121,25 +118,10 @@
     <ClCompile Include="..\src\Utility.cpp">
       <Filter>Hands-In-The-Web\Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\World.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\StaticMesh.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\AABB.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Octree.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\TriangleAABB.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Plane.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\OctreeNode.cpp">
       <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
     </ClCompile>
     <ClCompile Include="..\src\SimpleMesh.cpp">
@@ -444,9 +426,6 @@
     <ClInclude Include="..\inc\Camera3.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\Player.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\PlayState.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
@@ -462,34 +441,16 @@
     <ClInclude Include="..\inc\Utility.h">
       <Filter>Hands-In-The-Web\Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\World.h">
-      <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\StaticMesh.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\AABB.h">
-      <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Octree.h">
-      <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\TriangleAABB.h">
-      <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\Plane.h">
-      <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\OctreeNode.h">
       <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\SimpleMesh.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\Sky.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\FlyCam.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\Line.h">

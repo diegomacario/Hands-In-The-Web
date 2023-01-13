@@ -28,7 +28,6 @@ EM_BOOL on_pointerlockchange(int eventType, const EmscriptenPointerlockChangeEve
    if (event->isActive == 0)
    {
       pointerLocked = false;
-      game.setCameraFree(false);
    }
    else
    {
@@ -41,11 +40,6 @@ EM_BOOL on_pointerlockchange(int eventType, const EmscriptenPointerlockChangeEve
 EM_BOOL on_canvasclicked(int eventType, const EmscriptenMouseEvent* event, void* userData)
 {
    touchControlsEnabled = false;
-   if (!pointerLocked)
-   {
-      // Only call if pointer is not currently locked
-      game.setCameraFree(true);
-   }
 
    return 0;
 }

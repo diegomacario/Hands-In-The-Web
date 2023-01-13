@@ -1,7 +1,5 @@
 #include <utility>
 
-#include "glm/gtc/matrix_transform.hpp"
-
 #include "Camera3.h"
 
 Camera3::Camera3(float            distanceBetweenPlayerAndCamera,
@@ -30,7 +28,6 @@ Camera3::Camera3(float            distanceBetweenPlayerAndCamera,
    , mDistanceBetweenPlayerAndCameraUpperLimit(distanceBetweenPlayerAndCameraUpperLimit)
    , mCameraPitchLowerLimit(cameraPitchLowerLimit)
    , mCameraPitchUpperLimit(cameraPitchUpperLimit)
-   , mOriginalFieldOfViewYInDeg(fieldOfViewYInDeg)
    , mFieldOfViewYInDeg(fieldOfViewYInDeg)
    , mAspectRatio(aspectRatio)
    , mNear(near)
@@ -60,7 +57,6 @@ Camera3::Camera3(Camera3&& rhs) noexcept
    , mDistanceBetweenPlayerAndCameraUpperLimit(std::exchange(rhs.mDistanceBetweenPlayerAndCameraUpperLimit, 0.0f))
    , mCameraPitchLowerLimit(std::exchange(rhs.mCameraPitchLowerLimit, 0.0f))
    , mCameraPitchUpperLimit(std::exchange(rhs.mCameraPitchUpperLimit, 0.0f))
-   , mOriginalFieldOfViewYInDeg(std::exchange(rhs.mOriginalFieldOfViewYInDeg, 0.0f))
    , mFieldOfViewYInDeg(std::exchange(rhs.mFieldOfViewYInDeg, 0.0f))
    , mAspectRatio(std::exchange(rhs.mAspectRatio, 0.0f))
    , mNear(std::exchange(rhs.mNear, 0.0f))
@@ -91,7 +87,6 @@ Camera3& Camera3::operator=(Camera3&& rhs) noexcept
    mDistanceBetweenPlayerAndCameraUpperLimit    = std::exchange(rhs.mDistanceBetweenPlayerAndCameraUpperLimit, 0.0f);
    mCameraPitchLowerLimit                       = std::exchange(rhs.mCameraPitchLowerLimit, 0.0f);
    mCameraPitchUpperLimit                       = std::exchange(rhs.mCameraPitchUpperLimit, 0.0f);
-   mOriginalFieldOfViewYInDeg                   = std::exchange(rhs.mOriginalFieldOfViewYInDeg, 0.0f);
    mFieldOfViewYInDeg                           = std::exchange(rhs.mFieldOfViewYInDeg, 0.0f);
    mAspectRatio                                 = std::exchange(rhs.mAspectRatio, 0.0f);
    mNear                                        = std::exchange(rhs.mNear, 0.0f);
@@ -107,21 +102,26 @@ Camera3& Camera3::operator=(Camera3&& rhs) noexcept
    return *this;
 }
 
-const glm::vec3& Camera3::getPosition() const
+glm::vec3 Camera3::getPosition()
 {
    updatePositionAndOrientationOfCamera();
 
    return mCameraPosition;
 }
 
-const Q::quat& Camera3::getOrientation() const
+Q::quat Camera3::getOrientation()
 {
    updatePositionAndOrientationOfCamera();
 
    return mCameraGlobalOrientation;
 }
 
-const glm::mat4& Camera3::getViewMatrix() const
+float Camera3::getPitch()
+{
+   return mCameraPitch;
+}
+
+glm::mat4 Camera3::getViewMatrix()
 {
    updatePositionAndOrientationOfCamera();
    updateViewMatrix();
@@ -129,14 +129,14 @@ const glm::mat4& Camera3::getViewMatrix() const
    return mViewMatrix;
 }
 
-const glm::mat4& Camera3::getPerspectiveProjectionMatrix() const
+glm::mat4 Camera3::getPerspectiveProjectionMatrix()
 {
    updatePerspectiveProjectionMatrix();
 
    return mPerspectiveProjectionMatrix;
 }
 
-const glm::mat4& Camera3::getPerspectiveProjectionViewMatrix() const
+glm::mat4 Camera3::getPerspectiveProjectionViewMatrix()
 {
    updatePerspectiveProjectionViewMatrix();
 
@@ -169,11 +169,19 @@ void Camera3::reposition(float            distanceBetweenPlayerAndCamera,
    calculateInitialCameraOrientationWRTPlayer();
 }
 
-void Camera3::processMouseMovement(float yOffset)
+void Camera3::processMouseMovement(float xOffset, float yOffset)
 {
-   // When the user...
-   // moves the cursor up,   we want the camera to move down (to rotate CWISE around the X axis of the camera)
-   // moves the cursor down, we want the camera to move up   (to rotate CCWISE around the X axis of the camera)
+   // When the user holds the right mouse button down and...
+   // drags the cursor right, we want the camera to move left  (to rotate CWISE around the Y axis of the world)
+   // drags the cursor left,  we want the camera to move right (to rotate CCWISE around the Y axis of the world)
+   // drags the cursor up,    we want the camera to move down  (to rotate CWISE around the X axis of the camera)
+   // drags the cursor down,  we want the camera to move up    (to rotate CCWISE around the X axis of the camera)
+
+   // Cursor moves right (xOffset is positive) -> Need camera to rotate CWISE
+   // Cursor moves left  (xOffset is negative) -> Need camera to rotate CCWISE
+   // Since Q::angleAxis(yaw, ...) results in a CCWISE rotation when it's positive,
+   // we need to negate the xOffset to achieve the behaviour that's described above
+   float yawChangeInDeg = -xOffset * mMouseSensitivity;
 
    // Cursor moves up   (yOffset is positive) -> Need camera to rotate CWISE
    // Cursor moves down (yOffset is negative) -> Need camera to rotate CCWISE
@@ -197,13 +205,16 @@ void Camera3::processMouseMovement(float yOffset)
       mCameraPitch += pitchChangeInDeg;
    }
 
+   // The yaw is defined as a CCWISE rotation around the Y axis
+   Q::quat yawRot = Q::angleAxis(glm::radians(yawChangeInDeg),   glm::vec3(0.0f, 1.0f, 0.0f));
+
    // The pitch is defined as a CWISE rotation around the X axis
    // Since the rotation is CWISE, the angle is negated in the call to Q::angleAxis below
    Q::quat pitchRot = Q::angleAxis(glm::radians(-pitchChangeInDeg), glm::vec3(1.0f, 0.0f, 0.0f));
 
-   // The pitch is applied locally
-   // In other words, the pitch is applied with respect to the camera's X axis
-   mCameraOrientationWRTPlayer = Q::normalized(pitchRot * mCameraOrientationWRTPlayer);
+   // To avoid introducing roll, the yaw is applied globally while the pitch is applied locally
+   // In other words, the yaw is applied with respect to the world's Y axis, while the pitch is applied with respect to the camera's X axis
+   mCameraOrientationWRTPlayer = Q::normalized(pitchRot * mCameraOrientationWRTPlayer * yawRot);
 
    mNeedToUpdatePositionAndOrientationOfCamera = true;
    mNeedToUpdateViewMatrix = true;
@@ -212,120 +223,39 @@ void Camera3::processMouseMovement(float yOffset)
 
 void Camera3::processScrollWheelMovement(float yOffset)
 {
-   if (mCameraMode == CameraMode::ThirdPerson)
+   // If the scroll wheel moves up, the yOffset is positive
+   // If the scroll wheel moves down, the yOffset is negative
+   // We subtract the yOffset from the distance between the player and the camera so that:
+   // - When the scroll wheel moves up, the distance between the player and the camera decreases
+   // - When the scroll wheel moves down, the distance between the player and the camera increases
+
+   mDistanceBetweenPlayerAndCamera -= yOffset;
+
+   // Lower and upper limit checks
+   if (mDistanceBetweenPlayerAndCamera < mDistanceBetweenPlayerAndCameraLowerLimit)
    {
-      // If the scroll wheel moves up, the yOffset is positive
-      // If the scroll wheel moves down, the yOffset is negative
-      // We subtract the yOffset from the distance between the player and the camera so that:
-      // - When the scroll wheel moves up, the distance between the player and the camera decreases
-      // - When the scroll wheel moves down, the distance between the player and the camera increases
-      mDistanceBetweenPlayerAndCamera -= yOffset;
-
-      // Lower and upper limit checks
-      if (mDistanceBetweenPlayerAndCamera < mDistanceBetweenPlayerAndCameraLowerLimit)
-      {
-         mDistanceBetweenPlayerAndCamera = mDistanceBetweenPlayerAndCameraLowerLimit;
-      }
-      else if (mDistanceBetweenPlayerAndCamera > mDistanceBetweenPlayerAndCameraUpperLimit)
-      {
-         mDistanceBetweenPlayerAndCamera = mDistanceBetweenPlayerAndCameraUpperLimit;
-      }
-
-      mNeedToUpdatePositionAndOrientationOfCamera = true;
-      mNeedToUpdateViewMatrix = true;
+      mDistanceBetweenPlayerAndCamera = mDistanceBetweenPlayerAndCameraLowerLimit;
    }
-   else
+   else if (mDistanceBetweenPlayerAndCamera > mDistanceBetweenPlayerAndCameraUpperLimit)
    {
-      // The larger the FOV, the smaller things appear on the screen
-      // The smaller the FOV, the larger things appear on the screen
-      if (mFieldOfViewYInDeg >= 5.0f && mFieldOfViewYInDeg <= 45.0f)
-      {
-         mFieldOfViewYInDeg -= yOffset;
-      }
-
-      if (mFieldOfViewYInDeg < 5.0f)
-      {
-         mFieldOfViewYInDeg = 5.0f;
-      }
-      else if (mFieldOfViewYInDeg > 45.0f)
-      {
-         mFieldOfViewYInDeg = 45.0f;
-      }
-
-      mNeedToUpdatePerspectiveProjectionMatrix = true;
+      mDistanceBetweenPlayerAndCamera = mDistanceBetweenPlayerAndCameraUpperLimit;
    }
-
-   mNeedToUpdatePerspectiveProjectionViewMatrix = true;
-}
-
-void Camera3::setPlayerPosition(const glm::vec3& playerPosition)
-{
-   // Here we simply store the world position of the player
-
-   mPlayerPosition    = playerPosition + mOffsetFromPlayerPositionToCameraTarget;
 
    mNeedToUpdatePositionAndOrientationOfCamera = true;
    mNeedToUpdateViewMatrix = true;
    mNeedToUpdatePerspectiveProjectionViewMatrix = true;
 }
 
-void Camera3::setPlayerOrientation(const Q::quat& playerOrientation)
+void Camera3::processPlayerMovement(const glm::vec3& playerPosition, const Q::quat& playerOrientation)
 {
-   // Here we simply store the world orientation of the player
+   // Here we simply store the world position and orientation of the player
 
+   mPlayerPosition    = playerPosition + mOffsetFromPlayerPositionToCameraTarget;
    mPlayerOrientation = playerOrientation;
 
    mNeedToUpdatePositionAndOrientationOfCamera = true;
    mNeedToUpdateViewMatrix = true;
    mNeedToUpdatePerspectiveProjectionViewMatrix = true;
-}
-
-void Camera3::enableFirstPersonMode()
-{
-   mPlayerPosition -= mOffsetFromPlayerPositionToCameraTarget;
-   mOffsetFromPlayerPositionToCameraTarget = glm::vec3(0.0f, 4.8f, 0.0f);
-   mPlayerPosition += mOffsetFromPlayerPositionToCameraTarget;
-
-   mDistanceBetweenPlayerAndCamera = 0.0f;
-   mFieldOfViewYInDeg = mOriginalFieldOfViewYInDeg;
-   // Allow the user to look up when in first person mode by setting the lower pitch limit to -90
-   mCameraPitchLowerLimit = -90.0f;
-
-   mNeedToUpdatePositionAndOrientationOfCamera = true;
-   mNeedToUpdatePerspectiveProjectionMatrix = true;
-   mNeedToUpdateViewMatrix = true;
-   mNeedToUpdatePerspectiveProjectionViewMatrix = true;
-   mCameraMode = CameraMode::FirstPerson;
-}
-
-void Camera3::enableThirdPersonMode()
-{
-   mPlayerPosition -= mOffsetFromPlayerPositionToCameraTarget;
-   mOffsetFromPlayerPositionToCameraTarget = glm::vec3(0.0f, 3.0f, 0.0f);
-   mPlayerPosition += mOffsetFromPlayerPositionToCameraTarget;
-
-   mDistanceBetweenPlayerAndCamera = 14.0f;
-   mFieldOfViewYInDeg = mOriginalFieldOfViewYInDeg;
-   // Don't allow the user to look up when in third person mode by setting the lower pitch limit to 0
-   mCameraPitchLowerLimit = 0.0f;
-   // Call processMouseMovement in case the user was looking up when the transition from first person mode to third person mode occurred
-   // This will adjust the pitch immediately so that it is valid
-   processMouseMovement(0.0f);
-
-   mNeedToUpdatePositionAndOrientationOfCamera = true;
-   mNeedToUpdatePerspectiveProjectionMatrix = true;
-   mNeedToUpdateViewMatrix = true;
-   mNeedToUpdatePerspectiveProjectionViewMatrix = true;
-   mCameraMode = CameraMode::ThirdPerson;
-}
-
-void Camera3::getViewAndUpVectors(glm::vec3& outView, glm::vec3& outUp) const
-{
-   updatePositionAndOrientationOfCamera();
-
-   // The camera looks down the -Z axis
-   outView = mCameraGlobalOrientation * glm::vec3(0.0f, 0.0f, -1.0f);
-   outUp = mCameraGlobalOrientation * glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
 void Camera3::calculateInitialCameraOrientationWRTPlayer()
@@ -353,13 +283,13 @@ void Camera3::calculateInitialCameraOrientationWRTPlayer()
    mCameraOrientationWRTPlayer = Q::lookRotation(cameraZ, glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
-void Camera3::updatePositionAndOrientationOfCamera() const
+void Camera3::updatePositionAndOrientationOfCamera()
 {
    if (mNeedToUpdatePositionAndOrientationOfCamera)
    {
       // Combine the orientation of the camera WRT the player with the orientation of the player
       // Note how the orientation of the camera WRT the player is applied as a child rotation
-      mCameraGlobalOrientation = Q::normalized(mCameraOrientationWRTPlayer * mPlayerOrientation);
+      mCameraGlobalOrientation = mCameraOrientationWRTPlayer * mPlayerOrientation;
 
       // Calculate the Z axis of the camera, which points from the player to the camera, since the view direction is the -Z axis of the camera
       glm::vec3 cameraZ = mCameraGlobalOrientation * glm::vec3(0.0f, 0.0f, 1.0f);
@@ -372,7 +302,7 @@ void Camera3::updatePositionAndOrientationOfCamera() const
    }
 }
 
-void Camera3::updateViewMatrix() const
+void Camera3::updateViewMatrix()
 {
    /*
       The camera's model matrix can be calculated as follows (first rotate, then translate):
@@ -412,7 +342,7 @@ void Camera3::updateViewMatrix() const
    }
 }
 
-void Camera3::updatePerspectiveProjectionMatrix() const
+void Camera3::updatePerspectiveProjectionMatrix()
 {
    if (mNeedToUpdatePerspectiveProjectionMatrix)
    {
@@ -425,7 +355,7 @@ void Camera3::updatePerspectiveProjectionMatrix() const
    }
 }
 
-void Camera3::updatePerspectiveProjectionViewMatrix() const
+void Camera3::updatePerspectiveProjectionViewMatrix()
 {
    if (mNeedToUpdatePerspectiveProjectionViewMatrix)
    {
