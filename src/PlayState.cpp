@@ -13,9 +13,6 @@
 #include "PlayState.h"
 #include "ResourceManager.h"
 #include "ShaderLoader.h"
-#include "TextureLoader.h"
-#include "GLTFLoader.h"
-#include "RearrangeBones.h"
 
 #ifdef ENABLE_AUDIO
 PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachine,

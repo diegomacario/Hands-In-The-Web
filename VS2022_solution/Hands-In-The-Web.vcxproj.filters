@@ -64,41 +64,17 @@
     <ClCompile Include="..\src\TransformTrack.cpp">
       <Filter>Hands-In-The-Web\Source Files\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Pose.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Clip.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Skeleton.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\dependencies\cgltf\cgltf\cgltf.c">
       <Filter>cgltf\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\GLTFLoader.cpp">
       <Filter>Hands-In-The-Web\Source Files\GLTF</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\RearrangeBones.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\AnimatedMesh.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Blending.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation\Blending</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Ray.cpp">
       <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Triangle.cpp">
       <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\CrossFadeTarget.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation\Blending</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\CrossFadeControllerMultiple.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation\Blending</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Camera3.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
@@ -225,41 +201,17 @@
     <ClInclude Include="..\inc\TransformTrack.h">
       <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\Pose.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Clip.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Skeleton.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="..\dependencies\cgltf\cgltf\cgltf.h">
       <Filter>cgltf\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\GLTFLoader.h">
       <Filter>Hands-In-The-Web\Header Files\GLTF</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\RearrangeBones.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\AnimatedMesh.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Blending.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation\Blending</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\CrossFadeTarget.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation\Blending</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\Ray.h">
       <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\Triangle.h">
       <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\CrossFadeControllerMultiple.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation\Blending</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\Camera3.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
@@ -368,9 +320,6 @@
     <Filter Include="Hands-In-The-Web\Header Files\Animation">
       <UniqueIdentifier>{2f1c2aab-3dba-4fc6-b593-3db84c628e44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Hands-In-The-Web\Header Files\Animation\Blending">
-      <UniqueIdentifier>{29824537-20a9-4b77-b9c6-a4340ce8fd57}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Hands-In-The-Web\Header Files\GLTF">
       <UniqueIdentifier>{e19a1c59-38db-4803-866e-c82d941736b6}</UniqueIdentifier>
     </Filter>
@@ -385,9 +334,6 @@
     </Filter>
     <Filter Include="Hands-In-The-Web\Source Files\Animation">
       <UniqueIdentifier>{6970468a-f448-42eb-879d-892784e8da63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Hands-In-The-Web\Source Files\Animation\Blending">
-      <UniqueIdentifier>{6dce106b-0783-4d3d-ac53-23f34c0ee112}</UniqueIdentifier>
     </Filter>
     <Filter Include="Hands-In-The-Web\Source Files\GLTF">
       <UniqueIdentifier>{15bc05b7-8bc3-4c1c-8aea-143e188e7ecb}</UniqueIdentifier>

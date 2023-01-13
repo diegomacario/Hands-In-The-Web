@@ -8,10 +8,6 @@
 #include "AudioEngine.h"
 #endif
 #include "Camera3.h"
-#include "Texture.h"
-#include "AnimatedMesh.h"
-#include "Clip.h"
-#include "StaticMesh.h"
 #include "Sky.h"
 #include "WebAlembicViewer.h"
 #include "AlembicMesh.h"
