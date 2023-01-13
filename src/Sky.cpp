@@ -15,12 +15,12 @@ Sky::Sky()
 
    ConfigureVAO();
 
-   std::vector<std::string> faces { "resources/models/sky/sky.png",    // Positive X
-                                    "resources/models/sky/sky.png",    // Negative X
-                                    "resources/models/sky/sky.png",    // Positive Y
-                                    "resources/models/sky/sky.png",    // Negative Y
-                                    "resources/models/sky/sky.png",    // Positive Z
-                                    "resources/models/sky/moon.png" }; // Negative Z
+   std::vector<std::string> faces { "resources/models/sky/sky.png",   // Positive X
+                                    "resources/models/sky/sky.png",   // Negative X
+                                    "resources/models/sky/sky.png",   // Positive Y
+                                    "resources/models/sky/sky.png",   // Negative Y
+                                    "resources/models/sky/sky.png",   // Positive Z
+                                    "resources/models/sky/sky.png" }; // Negative Z
    mSkyTexture = LoadCubemap(faces);
 }
 
