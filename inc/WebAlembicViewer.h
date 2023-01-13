@@ -1,4 +1,6 @@
-#pragma once
+#ifndef WEB_ALEMBIC_VIEWER_H
+#define WEB_ALEMBIC_VIEWER_H
+
 #include "VectorMath.h"
 #include "sfbxTypes.h"
 
@@ -110,3 +112,5 @@ enum class SensorFitMode
 };
 
 } // namespace wabc
+
+#endif

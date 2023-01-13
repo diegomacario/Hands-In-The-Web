@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PCH_H
+#define PCH_H
 
 #include <cstdio>
 #include <string>
@@ -30,4 +31,6 @@
     #else
         #define wabcAPI extern "C" __attribute__((visibility("default")))
     #endif
-#endif // __EMSCRIPTEN__
+#endif
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SFBX_TYPES_H
+#define SFBX_TYPES_H
+
 #include <cstdint>
 #include <string>
 #include <string_view>
@@ -381,3 +383,5 @@ inline std::string to_string(sfbx::boolean v)
 }
 
 } // namespace std
+
+#endif

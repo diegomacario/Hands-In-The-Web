@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SFBX_RAW_VECTOR_H
+#define SFBX_RAW_VECTOR_H
 
 #include "sfbxTypes.h"
 
@@ -233,3 +234,5 @@ template<class T> inline constexpr bool is_RawVector = false;
 template<class T> inline constexpr bool is_RawVector<RawVector<T>> = true;
 
 } // namespace sfbx
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VECTOR_MATH_H
+#define VECTOR_MATH_H
+
 #define VectorMath_h
 
 #include <cmath>
@@ -1746,3 +1748,5 @@ template<class T> inline tvec3<T> orthogonalize_tangent(
 }
 
 } // namespace wabc
+
+#endif

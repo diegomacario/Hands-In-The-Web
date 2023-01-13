@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SCENE_GRAPH_H
+#define SCENE_GRAPH_H
+
 #include "WebAlembicViewer.h"
 #include "sfbxRawVector.h"
 
@@ -119,3 +121,5 @@ public:
 using PointsPtr = std::shared_ptr<Points>;
 
 } // namespace wabc
+
+#endif

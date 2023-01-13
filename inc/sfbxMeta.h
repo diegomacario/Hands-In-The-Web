@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SFBX_META_H
+#define SFBX_META_H
+
 #include <type_traits>
 
 #define sfbxRestrict(...) std::enable_if_t<__VA_ARGS__, bool> = true
@@ -30,3 +32,5 @@ template<class T>
 inline constexpr bool has_resize<T, std::void_t<decltype(std::declval<T>().resize(0))>> = true;
 
 } // namespace sfbx
+
+#endif
