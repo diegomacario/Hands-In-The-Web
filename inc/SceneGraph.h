@@ -89,15 +89,7 @@ public:
     span<int> getFaceIndices() const override { return make_span(m_face_indices); }
     span<int> getWireframeIndices() const override { return make_span(m_wireframe_indices); }
 
-#ifdef wabcWithGL
-    GLuint getPointsBuffer() const override { return m_buf_points; }
-    GLuint getPointsExBuffer() const override { return m_buf_points_ex; }
-    GLuint getNormalsExBuffer() const override { return m_buf_normals_ex; }
-    GLuint getWireframeIndicesBuffer() const override { return m_buf_wireframe_indices; }
-#endif
-
     void clear();
-    void upload();
 
 public:
     RawVector<float3> m_points;
@@ -108,13 +100,6 @@ public:
     RawVector<int> m_counts;
     RawVector<int> m_face_indices;
     RawVector<int> m_wireframe_indices;
-
-#ifdef wabcWithGL
-    GLuint m_buf_points{};
-    GLuint m_buf_points_ex{};
-    GLuint m_buf_normals_ex{};
-    GLuint m_buf_wireframe_indices{};
-#endif
 };
 using MeshPtr = std::shared_ptr<Mesh>;
 
@@ -125,18 +110,11 @@ public:
     Points();
     ~Points() override;
     span<float3> getPoints() const override { return make_span(m_points); }
-#ifdef wabcWithGL
-    GLuint getPointBuffer() const override { return m_vb_points; }
-#endif
 
     void clear();
-    void upload();
 
 public:
     RawVector<float3> m_points;
-#ifdef wabcWithGL
-    GLuint m_vb_points{};
-#endif
 };
 using PointsPtr = std::shared_ptr<Points>;
 

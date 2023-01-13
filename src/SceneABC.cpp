@@ -254,9 +254,6 @@ void SceneABC::seek(double time)
     ctx.obj = m_archive.getTop();
     ctx.time = time;
     seekImpl(ctx);
-
-    m_mono_mesh->upload();
-    m_mono_points->upload();
 }
 
 void SceneABC::seekImpl(ImportContext ctx)

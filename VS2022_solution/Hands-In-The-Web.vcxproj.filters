@@ -319,9 +319,6 @@
     <ClCompile Include="..\src\SceneABC.cpp">
       <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Renderer.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\SceneGraph.cpp">
       <Filter>Hands-In-The-Web\Source Files\Alembic</Filter>
     </ClCompile>

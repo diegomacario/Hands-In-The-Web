@@ -1,6 +1,4 @@
 #pragma once
-#include "GLFW/glfw3.h"
-
 #include "VectorMath.h"
 #include "sfbxTypes.h"
 
@@ -71,22 +69,12 @@ public:
     virtual span<int> getCounts() const = 0;
     virtual span<int> getFaceIndices() const = 0;
     virtual span<int> getWireframeIndices() const = 0;
-
-#ifdef wabcWithGL
-    virtual GLuint getPointsBuffer() const = 0;
-    virtual GLuint getPointsExBuffer() const = 0;
-    virtual GLuint getNormalsExBuffer() const = 0;
-    virtual GLuint getWireframeIndicesBuffer() const = 0;
-#endif
 };
 
 class IPoints : public IEntity
 {
 public:
     virtual span<float3> getPoints() const = 0;
-#ifdef wabcWithGL
-    virtual GLuint getPointBuffer() const = 0;
-#endif
 };
 
 class IScene
@@ -120,27 +108,5 @@ enum class SensorFitMode
     Horizontal = 1,
     Vertical = 2,
 };
-
-class IRenderer
-{
-public:
-    virtual ~IRenderer() {};
-    virtual void release() = 0;
-
-    virtual bool initialize(GLFWwindow* v) = 0;
-    virtual void setCamera(float3 pos, float3 dir, float3 up, float fov, float znear, float zfar, float2 shift = float2::zero()) = 0;
-    virtual void setCamera(ICamera* cam, SensorFitMode ft = SensorFitMode::Auto) = 0;
-    virtual void setDrawPoints(bool v) = 0;
-    virtual void setDrawWireframe(bool v) = 0;
-    virtual void setDrawFaces(bool v) = 0;
-
-    virtual void beginDraw() = 0;
-    virtual void endDraw() = 0;
-    virtual void draw(IMesh* mesh) = 0;
-    virtual void draw(IPoints* points) = 0;
-};
-IRenderer* CreateRenderer_();
-using IRendererPtr = std::shared_ptr<IRenderer>;
-inline IRendererPtr CreateRenderer() { return IRendererPtr(CreateRenderer_(), releaser<IRenderer>()); }
 
 } // namespace wabc

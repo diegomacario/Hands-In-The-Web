@@ -162,7 +162,6 @@
     <ClCompile Include="..\src\CrossFadeTarget.cpp" />
     <ClCompile Include="..\src\Line.cpp" />
     <ClCompile Include="..\src\pch.cpp" />
-    <ClCompile Include="..\src\Renderer.cpp" />
     <ClCompile Include="..\src\SceneABC.cpp" />
     <ClCompile Include="..\src\SceneGraph.cpp" />
     <ClCompile Include="..\src\StaticMesh.cpp" />

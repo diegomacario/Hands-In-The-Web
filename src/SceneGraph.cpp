@@ -64,27 +64,14 @@ bool BlendShape::deformNormals(span<float3> dst, span<float3> src, float w) cons
     return true;
 }
 
-
-
-
 Mesh::Mesh()
 {
-#ifdef wabcWithGL
-    glGenBuffers(1, &m_buf_points);
-    glGenBuffers(1, &m_buf_points_ex);
-    glGenBuffers(1, &m_buf_normals_ex);
-    glGenBuffers(1, &m_buf_wireframe_indices);
-#endif
+
 }
 
 Mesh::~Mesh()
 {
-#ifdef wabcWithGL
-    glDeleteBuffers(1, &m_buf_points);
-    glDeleteBuffers(1, &m_buf_points_ex);
-    glDeleteBuffers(1, &m_buf_normals_ex);
-    glDeleteBuffers(1, &m_buf_wireframe_indices);
-#endif
+
 }
 
 void Mesh::clear()
@@ -99,57 +86,19 @@ void Mesh::clear()
     m_wireframe_indices.clear();
 }
 
-void Mesh::upload()
-{
-#ifdef wabcWithGL
-    if (!m_points.empty()) {
-        glBindBuffer(GL_ARRAY_BUFFER, m_buf_points);
-        glBufferData(GL_ARRAY_BUFFER, m_points.size() * sizeof(float3), m_points.data(), GL_STREAM_DRAW);
-    }
-    if (!m_points_ex.empty()) {
-        glBindBuffer(GL_ARRAY_BUFFER, m_buf_points_ex);
-        glBufferData(GL_ARRAY_BUFFER, m_points_ex.size() * sizeof(float3), m_points_ex.data(), GL_STREAM_DRAW);
-    }
-    if (!m_normals_ex.empty()) {
-        glBindBuffer(GL_ARRAY_BUFFER, m_buf_normals_ex);
-        glBufferData(GL_ARRAY_BUFFER, m_normals_ex.size() * sizeof(float3), m_normals_ex.data(), GL_STREAM_DRAW);
-    }
-    if (!m_wireframe_indices.empty()) {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_buf_wireframe_indices);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_wireframe_indices.size() * sizeof(int), m_wireframe_indices.data(), GL_STREAM_DRAW);
-    }
-#endif
-}
-
-
-
 Points::Points()
 {
-#ifdef wabcWithGL
-    glGenBuffers(1, &m_vb_points);
-#endif
+
 }
 
 Points::~Points()
 {
-#ifdef wabcWithGL
-    glDeleteBuffers(1, &m_vb_points);
-#endif
+
 }
 
 void Points::clear()
 {
     m_points.clear();
-}
-
-void Points::upload()
-{
-#ifdef wabcWithGL
-    if (!m_points.empty()) {
-        glBindBuffer(GL_ARRAY_BUFFER, m_vb_points);
-        glBufferData(GL_ARRAY_BUFFER, m_points.size() * sizeof(float3), m_points.data(), GL_DYNAMIC_DRAW);
-    }
-#endif
 }
 
 IScene* LoadScene_(const char* path)
