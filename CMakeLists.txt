@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.11.1 FATAL_ERROR)
 project(Hands-In-The-Web)
 
 include_directories("${CMAKE_SOURCE_DIR}/inc"
-                    "${CMAKE_SOURCE_DIR}/dependencies/alembic"
+                    "${CMAKE_SOURCE_DIR}/dependencies/Alembic/inc/mac"
                     "${CMAKE_SOURCE_DIR}/dependencies/cgltf"
 					"${CMAKE_SOURCE_DIR}/dependencies/dr_libs"
                     "${CMAKE_SOURCE_DIR}/dependencies/glad"
@@ -11,10 +11,8 @@ include_directories("${CMAKE_SOURCE_DIR}/inc"
                     "${CMAKE_SOURCE_DIR}/dependencies/glm"
                     "${CMAKE_SOURCE_DIR}/dependencies/imgui"
                     "${CMAKE_SOURCE_DIR}/dependencies/KHR"
-					"${CMAKE_SOURCE_DIR}/dependencies/OpenEXR"
+                    "${CMAKE_SOURCE_DIR}/dependencies/Imath/inc/mac"
                     "${CMAKE_SOURCE_DIR}/dependencies/stb_image")
-
-file(GLOB emscripten_libs ${CMAKE_SOURCE_DIR}/dependencies/emscripten_lib/*.a)
 
 set(project_headers
     inc/AlembicMesh.h
@@ -98,12 +96,12 @@ set(project_resources "../resources@resources")
 
 set(CMAKE_EXECUTABLE_SUFFIX ".html")
 
-# For debugging
-#set(CMAKE_CXX_FLAGS "-fvisibility=hidden -std=c++17 -O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ASSERTIONS=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
-# For releasing
-set(CMAKE_CXX_FLAGS "-fvisibility=hidden -std=c++17 -O3 -s LLD_REPORT_UNDEFINED -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
+set(CMAKE_CXX_FLAGS "-std=gnu++17 -O3 -s LLD_REPORT_UNDEFINED -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
 
-#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --bind")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --bind")
+file(GLOB ext_libs ${CMAKE_SOURCE_DIR}/dependencies/libs/*.a)
+
+#add_definitions(-DGLFW_INCLUDE_NONE)
 
 # Uncomment this line and the imgui .cpp files above to enable IMGUI
 #add_definitions(-DENABLE_IMGUI)
@@ -113,4 +111,4 @@ set(CMAKE_CXX_FLAGS "-fvisibility=hidden -std=c++17 -O3 -s LLD_REPORT_UNDEFINED 
 
 add_executable(${PROJECT_NAME} ${project_headers} ${project_sources})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${emscripten_libs})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${ext_libs})
