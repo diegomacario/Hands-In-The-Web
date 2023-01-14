@@ -163,8 +163,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\inc;$(ProjectDir)\..\dependencies\glad;$(ProjectDir)\..\dependencies\KHR;$(ProjectDir)\..\dependencies\glm;$(ProjectDir)\..\dependencies\cgltf;$(ProjectDir)\..\dependencies\imgui;$(ProjectDir)\..\dependencies\GLFW;$(ProjectDir)\..\dependencies\stb_image;$(ProjectDir)\..\dependencies\AL;$(ProjectDir)\..\dependencies\alembic;$(ProjectDir)\..\dependencies\OpenEXR;$(ProjectDir)\..\dependencies\dr_libs;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\dependencies\GLFW\GLFW\lib\win\debug;$(ProjectDir)\..\dependencies\alembic\alembic\lib;$(ProjectDir)\..\dependencies\OpenEXR\lib;$(ProjectDir)\..\dependencies\AL\AL\lib\win\debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\..\inc;$(ProjectDir)\..\dependencies\glad;$(ProjectDir)\..\dependencies\KHR;$(ProjectDir)\..\dependencies\glm;$(ProjectDir)\..\dependencies\cgltf;$(ProjectDir)\..\dependencies\imgui;$(ProjectDir)\..\dependencies\GLFW;$(ProjectDir)\..\dependencies\stb_image;$(ProjectDir)\..\dependencies\AL;$(ProjectDir)\..\dependencies\Alembic\inc\win;$(ProjectDir)\..\dependencies\Imath\inc\win;$(ProjectDir)\..\dependencies\dr_libs;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\dependencies\GLFW\GLFW\lib\win\debug;$(ProjectDir)\..\dependencies\Alembic\lib\win;$(ProjectDir)\..\dependencies\Imath\lib\win;$(ProjectDir)\..\dependencies\AL\AL\lib\win\debug;$(LibraryPath)</LibraryPath>
     <SourcePath>$(ProjectDir)\..\src;$(SourcePath)</SourcePath>
     <LocalDebuggerEnvironment>PATH=%PATH%;$(ProjectDir)..\dependencies\win\dll\debug$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
@@ -175,8 +175,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\inc;$(ProjectDir)\..\dependencies\glad;$(ProjectDir)\..\dependencies\KHR;$(ProjectDir)\..\dependencies\glm;$(ProjectDir)\..\dependencies\cgltf;$(ProjectDir)\..\dependencies\imgui;$(ProjectDir)\..\dependencies\GLFW;$(ProjectDir)\..\dependencies\stb_image;$(ProjectDir)\..\dependencies\AL;$(ProjectDir)\..\dependencies\alembic;$(ProjectDir)\..\dependencies\OpenEXR;$(ProjectDir)\..\dependencies\dr_libs;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\dependencies\OpenEXR\lib;$(ProjectDir)\..\dependencies\GLFW\GLFW\lib\win\release;$(ProjectDir)\..\dependencies\alembic\alembic\lib;$(ProjectDir)\..\dependencies\AL\AL\lib\win\release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\..\inc;$(ProjectDir)\..\dependencies\glad;$(ProjectDir)\..\dependencies\KHR;$(ProjectDir)\..\dependencies\glm;$(ProjectDir)\..\dependencies\cgltf;$(ProjectDir)\..\dependencies\imgui;$(ProjectDir)\..\dependencies\GLFW;$(ProjectDir)\..\dependencies\stb_image;$(ProjectDir)\..\dependencies\AL;$(ProjectDir)\..\dependencies\Alembic\inc\win;$(ProjectDir)\..\dependencies\Imath\inc\win;$(ProjectDir)\..\dependencies\dr_libs;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\dependencies\Imath\lib\win;$(ProjectDir)\..\dependencies\GLFW\GLFW\lib\win\release;$(ProjectDir)\..\dependencies\Alembic\lib\win;$(ProjectDir)\..\dependencies\AL\AL\lib\win\release;$(LibraryPath)</LibraryPath>
     <SourcePath>$(ProjectDir)\..\src;$(SourcePath)</SourcePath>
     <LocalDebuggerEnvironment>PATH=%PATH%;$(ProjectDir)..\dependencies\win\dll\release$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
