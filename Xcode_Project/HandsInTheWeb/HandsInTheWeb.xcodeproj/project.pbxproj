@@ -64,8 +64,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		046A2BD529720E04009F0A83 /* emscripten_lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = emscripten_lib; path = ../../dependencies/emscripten_lib; sourceTree = "<group>"; };
-		046A2BD629720E11009F0A83 /* libImath-3_1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libImath-3_1.a"; path = "../../dependencies/emscripten_lib/libImath-3_1.a"; sourceTree = "<group>"; };
 		046A2BD829721B23009F0A83 /* libAlembic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAlembic.a; path = ../../dependencies/Alembic/lib/mac/libAlembic.a; sourceTree = "<group>"; };
 		046A2BDA29721B3F009F0A83 /* libImath-3_1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libImath-3_1.a"; path = "../../dependencies/Imath/lib/mac/libImath-3_1.a"; sourceTree = "<group>"; };
 		04FC91212972062D00E43882 /* HandsInTheWeb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HandsInTheWeb; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,7 +142,6 @@
 		04FC91A3297208DC00E43882 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		04FC91A52972091800E43882 /* lglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lglfw3.a; path = ../../dependencies/GLFW/GLFW/lib/mac/lglfw3.a; sourceTree = "<group>"; };
 		04FC91A72972095C00E43882 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		04FC91A929720B5D00E43882 /* libAlembic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAlembic.a; path = ../../dependencies/emscripten_lib/libAlembic.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,9 +301,6 @@
 			children = (
 				046A2BDA29721B3F009F0A83 /* libImath-3_1.a */,
 				046A2BD829721B23009F0A83 /* libAlembic.a */,
-				046A2BD629720E11009F0A83 /* libImath-3_1.a */,
-				046A2BD529720E04009F0A83 /* emscripten_lib */,
-				04FC91A929720B5D00E43882 /* libAlembic.a */,
 				04FC91A72972095C00E43882 /* OpenGL.framework */,
 				04FC91A52972091800E43882 /* lglfw3.a */,
 				04FC91A3297208DC00E43882 /* IOKit.framework */,

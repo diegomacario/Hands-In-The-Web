@@ -39,8 +39,8 @@
 
 // Reserve 2 digits for patch number, 2 digits for the minor number and the rest
 // for the major.
-#define ALEMBIC_LIBRARY_VERSION ${PROJECT_VERSION_MAJOR} * 10000 + ${PROJECT_VERSION_MINOR} * 100 + ${PROJECT_VERSION_PATCH}
+#define ALEMBIC_LIBRARY_VERSION 1 * 10000 + 8 * 100 + 4
 
-//#cmakedefine ALEMBIC_WITH_HDF5
+/* #undef ALEMBIC_WITH_HDF5 */
 
 #endif
