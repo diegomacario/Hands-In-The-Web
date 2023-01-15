@@ -1,3 +1,5 @@
+#include <random>
+
 #include "glm/gtx/compatibility.hpp"
 
 #ifdef __EMSCRIPTEN__
@@ -61,8 +63,25 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
 #endif
 
    loadHands();
+
+   std::random_device rd;
+   std::mt19937 gen(rd());
+   std::uniform_int_distribution<> distrib(0, 1);
+   mRenderGeisha = distrib(gen);
+
+#ifndef __EMSCRIPTEN__
    loadGeisha();
    loadSamurai();
+#else
+   if (mRenderGeisha)
+   {
+      loadGeisha();
+   }
+   else
+   {
+      loadSamurai();
+   }
+#endif
 }
 
 void PlayState::enter()
