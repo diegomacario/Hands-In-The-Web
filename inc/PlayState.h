@@ -86,7 +86,7 @@ private:
 
    std::vector<StaticMesh>                      mSamuraiMeshes;
 
-   bool                                         mRenderGeisha;
+   int                                          mCharacterIndex;
 };
 
 #endif

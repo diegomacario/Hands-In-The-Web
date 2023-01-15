@@ -63,25 +63,13 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
 #endif
 
    loadHands();
+   loadGeisha();
+   loadSamurai();
 
    std::random_device rd;
    std::mt19937 gen(rd());
    std::uniform_int_distribution<> distrib(0, 1);
-   mRenderGeisha = distrib(gen);
-
-#ifndef __EMSCRIPTEN__
-   loadGeisha();
-   loadSamurai();
-#else
-   if (mRenderGeisha)
-   {
-      loadGeisha();
-   }
-   else
-   {
-      loadSamurai();
-   }
-#endif
+   mCharacterIndex = distrib(gen);
 }
 
 void PlayState::enter()
@@ -166,11 +154,11 @@ void PlayState::render()
    glEnable(GL_DEPTH_TEST);
 
    renderHands();
-   if (mRenderGeisha)
+   if (mCharacterIndex == 0) // Geisha
    {
       renderGeisha();
    }
-   else
+   else // Samurai
    {
       renderSamurai();
    }
@@ -299,14 +287,15 @@ void PlayState::userInterface()
       ImGui::BulletText("Use the scroll wheel to zoom in and out.");
    }
 
-#ifndef __EMSCRIPTEN__
    if (ImGui::CollapsingHeader("Settings", nullptr, ImGuiTreeNodeFlags_DefaultOpen))
    {
+#ifndef __EMSCRIPTEN__
       ImGui::SliderFloat("Playback speed", &mPlaybackSpeed, 0.0f, 1.0f, "%.3f");
-
-      ImGui::Checkbox("Render geisha", &mRenderGeisha);
-   }
 #endif
+
+      ImGui::RadioButton("Geisha", &mCharacterIndex, 0);
+      ImGui::RadioButton("Samurai", &mCharacterIndex, 1);
+   }
 
    ImGui::End();
 }
@@ -324,7 +313,7 @@ void PlayState::renderHands()
    mBlinnPhongShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
    mBlinnPhongShader->setUniformVec3("cameraPos",    mCamera3.getPosition());
 
-   if (mRenderGeisha)
+   if (mCharacterIndex == 0) // Geisha
    {
       // Grey
       //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd9d2d7));
@@ -335,7 +324,7 @@ void PlayState::renderHands()
       // Red
       mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
    }
-   else
+   else // Samurai
    {
       // Super light gold
       //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xfff8f1));
