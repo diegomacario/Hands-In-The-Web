@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		046A2BD929721B30009F0A83 /* libAlembic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046A2BD829721B23009F0A83 /* libAlembic.a */; };
-		046A2BDB29721B53009F0A83 /* libImath-3_1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046A2BDA29721B3F009F0A83 /* libImath-3_1.a */; };
+		043E10AF29749A7D0099235A /* libImath-3_1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046A2BDA29721B3F009F0A83 /* libImath-3_1.a */; };
+		04B6489B2974A10F000BB921 /* libAlembic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 043E10B029749C410099235A /* libAlembic.a */; };
 		04FC91492972071C00E43882 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC912D2972071C00E43882 /* Texture.cpp */; };
 		04FC914A2972071C00E43882 /* SceneGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC912E2972071C00E43882 /* SceneGraph.cpp */; };
 		04FC914B2972071C00E43882 /* AlembicMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC912F2972071C00E43882 /* AlembicMesh.cpp */; };
@@ -34,7 +34,6 @@
 		04FC91612972071C00E43882 /* PlayState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91452972071C00E43882 /* PlayState.cpp */; };
 		04FC91622972071C00E43882 /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91462972071C00E43882 /* TextureLoader.cpp */; };
 		04FC91632972071C00E43882 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91472972071C00E43882 /* Shader.cpp */; };
-		04FC91642972071C00E43882 /* Sky.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91482972071C00E43882 /* Sky.cpp */; };
 		04FC918D297207F400E43882 /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC918C297207F400E43882 /* stb_image.cpp */; };
 		04FC91952972082800E43882 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC918E2972082800E43882 /* imgui_draw.cpp */; };
 		04FC91962972082800E43882 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC918F2972082800E43882 /* imgui_tables.cpp */; };
@@ -64,7 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		046A2BD829721B23009F0A83 /* libAlembic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAlembic.a; path = ../../dependencies/Alembic/lib/mac/libAlembic.a; sourceTree = "<group>"; };
+		043E10B029749C410099235A /* libAlembic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAlembic.a; path = ../../dependencies/Alembic/lib/mac/libAlembic.a; sourceTree = "<group>"; };
 		046A2BDA29721B3F009F0A83 /* libImath-3_1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libImath-3_1.a"; path = "../../dependencies/Imath/lib/mac/libImath-3_1.a"; sourceTree = "<group>"; };
 		04FC91212972062D00E43882 /* HandsInTheWeb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HandsInTheWeb; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FC912D2972071C00E43882 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = ../../src/Texture.cpp; sourceTree = "<group>"; };
@@ -92,7 +91,6 @@
 		04FC91452972071C00E43882 /* PlayState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayState.cpp; path = ../../src/PlayState.cpp; sourceTree = "<group>"; };
 		04FC91462972071C00E43882 /* TextureLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureLoader.cpp; path = ../../src/TextureLoader.cpp; sourceTree = "<group>"; };
 		04FC91472972071C00E43882 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = ../../src/Shader.cpp; sourceTree = "<group>"; };
-		04FC91482972071C00E43882 /* Sky.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sky.cpp; path = ../../src/Sky.cpp; sourceTree = "<group>"; };
 		04FC91652972074600E43882 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Window.h; path = ../../inc/Window.h; sourceTree = "<group>"; };
 		04FC91662972074600E43882 /* ShaderLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderLoader.h; path = ../../inc/ShaderLoader.h; sourceTree = "<group>"; };
 		04FC91672972074600E43882 /* FiniteStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiniteStateMachine.h; path = ../../inc/FiniteStateMachine.h; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 		04FC91732972074700E43882 /* SimpleMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleMesh.h; path = ../../inc/SimpleMesh.h; sourceTree = "<group>"; };
 		04FC91742972074700E43882 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../../inc/Utility.h; sourceTree = "<group>"; };
 		04FC91752972074700E43882 /* Interpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Interpolation.h; path = ../../inc/Interpolation.h; sourceTree = "<group>"; };
-		04FC91762972074700E43882 /* Sky.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sky.h; path = ../../inc/Sky.h; sourceTree = "<group>"; };
 		04FC91772972074700E43882 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../inc/Game.h; sourceTree = "<group>"; };
 		04FC91782972074700E43882 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane.h; path = ../../inc/Plane.h; sourceTree = "<group>"; };
 		04FC91792972074700E43882 /* TextureLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureLoader.h; path = ../../inc/TextureLoader.h; sourceTree = "<group>"; };
@@ -150,11 +147,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				04FC91A62972095400E43882 /* lglfw3.a in Frameworks */,
-				046A2BD929721B30009F0A83 /* libAlembic.a in Frameworks */,
 				04FC91A82972095C00E43882 /* OpenGL.framework in Frameworks */,
-				046A2BDB29721B53009F0A83 /* libImath-3_1.a in Frameworks */,
+				043E10AF29749A7D0099235A /* libImath-3_1.a in Frameworks */,
 				04FC91A2297208CC00E43882 /* Cocoa.framework in Frameworks */,
 				04FC91A4297208DC00E43882 /* IOKit.framework in Frameworks */,
+				04B6489B2974A10F000BB921 /* libAlembic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +205,6 @@
 				04FC917E2972074700E43882 /* Shader.h */,
 				04FC91662972074600E43882 /* ShaderLoader.h */,
 				04FC91732972074700E43882 /* SimpleMesh.h */,
-				04FC91762972074700E43882 /* Sky.h */,
 				04FC91852972074700E43882 /* State.h */,
 				04FC91682972074600E43882 /* StaticMesh.h */,
 				04FC917D2972074700E43882 /* Texture.h */,
@@ -244,7 +240,6 @@
 				04FC91472972071C00E43882 /* Shader.cpp */,
 				04FC91362972071C00E43882 /* ShaderLoader.cpp */,
 				04FC91342972071C00E43882 /* SimpleMesh.cpp */,
-				04FC91482972071C00E43882 /* Sky.cpp */,
 				04FC913F2972071C00E43882 /* StaticMesh.cpp */,
 				04FC912D2972071C00E43882 /* Texture.cpp */,
 				04FC91462972071C00E43882 /* TextureLoader.cpp */,
@@ -299,8 +294,8 @@
 		04FC91A0297208CC00E43882 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				043E10B029749C410099235A /* libAlembic.a */,
 				046A2BDA29721B3F009F0A83 /* libImath-3_1.a */,
-				046A2BD829721B23009F0A83 /* libAlembic.a */,
 				04FC91A72972095C00E43882 /* OpenGL.framework */,
 				04FC91A52972091800E43882 /* lglfw3.a */,
 				04FC91A3297208DC00E43882 /* IOKit.framework */,
@@ -391,7 +386,6 @@
 				04FC91972972082800E43882 /* imgui.cpp in Sources */,
 				04FC919D2972083E00E43882 /* glad.c in Sources */,
 				04FC91632972071C00E43882 /* Shader.cpp in Sources */,
-				04FC91642972071C00E43882 /* Sky.cpp in Sources */,
 				04FC91992972082800E43882 /* imgui_widgets.cpp in Sources */,
 				04FC919B2972082800E43882 /* imgui_demo.cpp in Sources */,
 				04FC914B2972071C00E43882 /* AlembicMesh.cpp in Sources */,
@@ -527,6 +521,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					ENABLE_IMGUI,
 					GLFW_INCLUDE_NONE,
 				);
 				HEADER_SEARCH_PATHS = (
@@ -555,7 +550,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = GLFW_INCLUDE_NONE;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					ENABLE_IMGUI,
+					GLFW_INCLUDE_NONE,
+				);
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "";
 				HEADER_SEARCH_PATHS = (
 					../../dependencies/cgltf,

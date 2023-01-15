@@ -104,4 +104,4 @@ set(CMAKE_CXX_FLAGS "-std=c++17 -O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 
 
 add_executable(${PROJECT_NAME} ${project_headers} ${project_sources})
 
-target_link_libraries(${PROJECT_NAME} "${CMAKE_SOURCE_DIR}/dependencies/Alembic/lib/mac/libAlembic.a" "${CMAKE_SOURCE_DIR}/dependencies/Imath/lib/mac/libImath-3_1.a")
+target_link_libraries(${PROJECT_NAME} "${CMAKE_SOURCE_DIR}/dependencies/Alembic/lib/emscripten/libAlembic.a" "${CMAKE_SOURCE_DIR}/dependencies/Imath/lib/emscripten/libImath-3_1.a")
