@@ -44,9 +44,9 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
    // Initialize the hands shader
    //mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/gourad.vert",
    //                                                                             "resources/shaders/gourad.frag");
-   mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/blinn_phong.vert",
-                                                                                "resources/shaders/blinn_phong.frag");
-   configureLights(mHandsShader);
+   mBlinnPhongShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/blinn_phong.vert",
+                                                                                     "resources/shaders/blinn_phong.frag");
+   configureLights(mBlinnPhongShader);
 
    // Set the listener data
 #ifdef ENABLE_AUDIO
@@ -60,8 +60,8 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
 #endif
 
    loadHands();
-
-   loadMask();
+   loadGeisha();
+   loadSamurai();
 }
 
 void PlayState::enter()
@@ -146,8 +146,8 @@ void PlayState::render()
    glEnable(GL_DEPTH_TEST);
 
    renderHands();
-
-   renderMask();
+   renderGeisha();
+   //renderSamurai();
 
    // Remove translation from the view matrix before rendering the skybox
    //mSky.Render(mCamera3.getPerspectiveProjectionMatrix() * glm::mat4(glm::mat3(mCamera3.getViewMatrix())));
@@ -209,15 +209,15 @@ void PlayState::loadHands()
    wabc::IMesh* mesh = mScene->getMesh();
    mAlembicMesh.InitializeBuffers(mesh);
 
-   int positionsAttribLoc = mHandsShader->getAttributeLocation("position");
-   int normalsAttribLoc   = mHandsShader->getAttributeLocation("normal");
+   int positionsAttribLoc = mBlinnPhongShader->getAttributeLocation("position");
+   int normalsAttribLoc   = mBlinnPhongShader->getAttributeLocation("normal");
    mAlembicMesh.ConfigureVAO(positionsAttribLoc, normalsAttribLoc);
 
    std::tuple<double, double> timeRange = mScene->getTimeRange();
    mAlembicAnimationDuration = static_cast<float>(std::get<1>(timeRange));
 }
 
-void PlayState::loadMask()
+void PlayState::loadGeisha()
 {
    cgltf_data* data = LoadGLTFFile("resources/models/geisha/geisha.glb");
    mGeishaMeshes = LoadStaticMeshes(data);
@@ -241,6 +241,26 @@ void PlayState::loadMask()
    mGeishaEyesTexture = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/geisha/eyes.png", nullptr, nullptr, GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, true, true);
 }
 
+void PlayState::loadSamurai()
+{
+   cgltf_data* data = LoadGLTFFile("resources/models/samurai/samurai.glb");
+   mSamuraiMeshes = LoadStaticMeshes(data);
+   FreeGLTFFile(data);
+
+   int positionsAttribLoc = mBlinnPhongShader->getAttributeLocation("position");
+   int normalsAttribLoc   = mBlinnPhongShader->getAttributeLocation("normal");
+
+   for (unsigned int i = 0,
+        size = static_cast<unsigned int>(mSamuraiMeshes.size());
+        i < size;
+        ++i)
+   {
+      mSamuraiMeshes[i].ConfigureVAO(positionsAttribLoc,
+                                     normalsAttribLoc,
+                                     -1);
+   }
+}
+
 #ifdef ENABLE_IMGUI
 void PlayState::userInterface()
 {
@@ -262,28 +282,28 @@ void PlayState::renderHands()
    wabc::IMesh* mesh = mScene->getMesh();
    mAlembicMesh.UpdateBuffers(mesh);
 
-   mHandsShader->use(true);
-   mHandsShader->setUniformMat4("model",        glm::mat4(1.0f));
-   mHandsShader->setUniformMat4("view",         mCamera3.getViewMatrix());
-   mHandsShader->setUniformMat4("projection",   mCamera3.getPerspectiveProjectionMatrix());
-   mHandsShader->setUniformVec3("cameraPos",    mCamera3.getPosition());
+   mBlinnPhongShader->use(true);
+   mBlinnPhongShader->setUniformMat4("model", glm::mat4(1.0f));
+   mBlinnPhongShader->setUniformMat4("view", mCamera3.getViewMatrix());
+   mBlinnPhongShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
+   mBlinnPhongShader->setUniformVec3("cameraPos",    mCamera3.getPosition());
    // Grey
-   //mHandsShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd9d2d7));
+   //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd9d2d7));
    // White
-   //mHandsShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xf2eeef));
+   //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xf2eeef));
    // Pink
-   //mHandsShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd99aa3));
+   //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd99aa3));
    // Red
-   mHandsShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
+   mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
 
    glFrontFace(GL_CW);
    mAlembicMesh.Render();
    glFrontFace(GL_CCW);
 
-   mHandsShader->use(false);
+   mBlinnPhongShader->use(false);
 }
 
-void PlayState::renderMask()
+void PlayState::renderGeisha()
 {
    wabc::span<wabc::ICamera*> cameras = mScene->getCameras();
    wabc::float3 cameraPosition        = cameras[0]->getPosition();
@@ -292,7 +312,7 @@ void PlayState::renderMask()
 
    Transform modelTransform(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
                             Q::lookRotation(glm::vec3(cameraDirection.x, cameraDirection.y, cameraDirection.z),
-                            glm::vec3(cameraUp.x, cameraUp.y, cameraUp.z)), glm::vec3(0.1f, 0.1f, 0.1f));
+                            glm::vec3(cameraUp.x, cameraUp.y, cameraUp.z)), glm::vec3(0.1f));
 
    mStaticMeshWithNormalsShader->use(true);
    mStaticMeshWithNormalsShader->setUniformMat4("model", transformToMat4(modelTransform));
@@ -310,6 +330,36 @@ void PlayState::renderMask()
    mGeishaEyesTexture->unbind(0);
 
    mStaticMeshWithNormalsShader->use(false);
+}
+
+void PlayState::renderSamurai()
+{
+   wabc::span<wabc::ICamera*> cameras = mScene->getCameras();
+   wabc::float3 cameraPosition        = cameras[0]->getPosition();
+   wabc::float3 cameraDirection       = cameras[0]->getDirection();
+   wabc::float3 cameraUp              = cameras[0]->getUp();
+
+   Transform modelTransform(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
+                            Q::lookRotation(glm::vec3(cameraDirection.x, cameraDirection.y, cameraDirection.z),
+                            glm::vec3(cameraUp.x, cameraUp.y, cameraUp.z)), glm::vec3(0.001f));
+
+   mBlinnPhongShader->use(true);
+   mBlinnPhongShader->setUniformMat4("model", transformToMat4(modelTransform));
+   mBlinnPhongShader->setUniformMat4("view", mCamera3.getViewMatrix());
+   mBlinnPhongShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
+   mBlinnPhongShader->setUniformVec3("cameraPos", mCamera3.getPosition());
+   // Red
+   mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
+
+   for (unsigned int i = 0,
+        size = static_cast<unsigned int>(mSamuraiMeshes.size());
+        i < size;
+        ++i)
+   {
+      mSamuraiMeshes[i].Render();
+   }
+
+   mBlinnPhongShader->use(false);
 }
 
 void PlayState::resetCamera()

@@ -49,14 +49,16 @@ private:
    void configureLights(const std::shared_ptr<Shader>& shader);
 
    void loadHands();
-   void loadMask();
+   void loadGeisha();
+   void loadSamurai();
 
 #ifdef ENABLE_IMGUI
    void userInterface();
 #endif
 
    void renderHands();
-   void renderMask();
+   void renderGeisha();
+   void renderSamurai();
 
    void resetCamera();
 
@@ -72,7 +74,7 @@ private:
 
    std::shared_ptr<Shader>                      mStaticMeshWithoutNormalsShader;
    std::shared_ptr<Shader>                      mStaticMeshWithNormalsShader;
-   std::shared_ptr<Shader>                      mHandsShader;
+   std::shared_ptr<Shader>                      mBlinnPhongShader;
 
    Sky                                          mSky;
 
@@ -87,6 +89,8 @@ private:
    std::vector<StaticMesh>                      mGeishaMeshes;
    std::shared_ptr<Texture>                     mGeishaFaceTexture;
    std::shared_ptr<Texture>                     mGeishaEyesTexture;
+
+   std::vector<StaticMesh>                      mSamuraiMeshes;
 };
 
 #endif
