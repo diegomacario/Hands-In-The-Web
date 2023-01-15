@@ -219,8 +219,8 @@ void PlayState::loadHands()
 
 void PlayState::loadMask()
 {
-   cgltf_data* data = LoadGLTFFile("resources/models/mask/geisha.glb");
-   mMaskMeshes = LoadStaticMeshes(data);
+   cgltf_data* data = LoadGLTFFile("resources/models/geisha/geisha.glb");
+   mGeishaMeshes = LoadStaticMeshes(data);
    FreeGLTFFile(data);
 
    int positionsAttribLoc = mStaticMeshWithNormalsShader->getAttributeLocation("position");
@@ -228,17 +228,17 @@ void PlayState::loadMask()
    int texCoordsAttribLoc = mStaticMeshWithNormalsShader->getAttributeLocation("texCoord");
 
    for (unsigned int i = 0,
-        size = static_cast<unsigned int>(mMaskMeshes.size());
+        size = static_cast<unsigned int>(mGeishaMeshes.size());
         i < size;
         ++i)
    {
-      mMaskMeshes[i].ConfigureVAO(positionsAttribLoc,
-                                  normalsAttribLoc,
-                                  texCoordsAttribLoc);
+      mGeishaMeshes[i].ConfigureVAO(positionsAttribLoc,
+                                    normalsAttribLoc,
+                                    texCoordsAttribLoc);
    }
 
-   mMaskTexture = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/mask/mask.jpeg", nullptr, nullptr, GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, true, true);
-   mEyesTexture = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/mask/eyes.png", nullptr, nullptr, GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, true, true);
+   mGeishaFaceTexture = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/geisha/face.jpeg", nullptr, nullptr, GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, true, true);
+   mGeishaEyesTexture = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/geisha/eyes.png", nullptr, nullptr, GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, true, true);
 }
 
 #ifdef ENABLE_IMGUI
@@ -300,14 +300,14 @@ void PlayState::renderMask()
    mStaticMeshWithNormalsShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
    //mStaticMeshWithNormalsShader->setUniformVec3("cameraPos", mCamera3.getPosition());
 
-   mMaskTexture->bind(0, mStaticMeshWithNormalsShader->getUniformLocation("diffuseTex"));
-   mMaskMeshes[1].Render();
-   mMaskTexture->unbind(0);
+   mGeishaFaceTexture->bind(0, mStaticMeshWithNormalsShader->getUniformLocation("diffuseTex"));
+   mGeishaMeshes[1].Render();
+   mGeishaFaceTexture->unbind(0);
 
-   mEyesTexture->bind(0, mStaticMeshWithNormalsShader->getUniformLocation("diffuseTex"));
-   mMaskMeshes[0].Render();
-   mMaskMeshes[2].Render();
-   mEyesTexture->unbind(0);
+   mGeishaEyesTexture->bind(0, mStaticMeshWithNormalsShader->getUniformLocation("diffuseTex"));
+   mGeishaMeshes[0].Render();
+   mGeishaMeshes[2].Render();
+   mGeishaEyesTexture->unbind(0);
 
    mStaticMeshWithNormalsShader->use(false);
 }

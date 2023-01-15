@@ -84,9 +84,9 @@ private:
    float                                        mAlembicAnimationDuration;
    float                                        mAlembicAnimationPlaybackTime = 0.0f;
 
-   std::vector<StaticMesh>                      mMaskMeshes;
-   std::shared_ptr<Texture>                     mMaskTexture;
-   std::shared_ptr<Texture>                     mEyesTexture;
+   std::vector<StaticMesh>                      mGeishaMeshes;
+   std::shared_ptr<Texture>                     mGeishaFaceTexture;
+   std::shared_ptr<Texture>                     mGeishaEyesTexture;
 };
 
 #endif
