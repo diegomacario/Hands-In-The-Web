@@ -42,7 +42,6 @@
     <ClInclude Include="..\inc\StaticMesh.h" />
     <ClInclude Include="..\inc\Plane.h" />
     <ClInclude Include="..\inc\SimpleMesh.h" />
-    <ClInclude Include="..\inc\Sky.h" />
     <ClInclude Include="..\inc\VectorMath.h" />
     <ClInclude Include="..\inc\WebAlembicViewer.h" />
     <ClInclude Include="..\inc\FiniteStateMachine.h" />
@@ -88,7 +87,6 @@
     <ClCompile Include="..\src\StaticMesh.cpp" />
     <ClCompile Include="..\src\Plane.cpp" />
     <ClCompile Include="..\src\SimpleMesh.cpp" />
-    <ClCompile Include="..\src\Sky.cpp" />
     <ClCompile Include="..\src\FiniteStateMachine.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\GLTFLoader.cpp" />

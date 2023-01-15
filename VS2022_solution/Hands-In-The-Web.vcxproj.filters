@@ -100,9 +100,6 @@
     <ClCompile Include="..\src\SimpleMesh.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Sky.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\dependencies\imgui\imgui\imgui_tables.cpp">
       <Filter>imgui\Source Files</Filter>
     </ClCompile>
@@ -229,9 +226,6 @@
       <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\SimpleMesh.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Sky.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\SceneGraph.h">

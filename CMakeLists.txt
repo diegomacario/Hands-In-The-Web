@@ -5,7 +5,7 @@ project(Hands-In-The-Web)
 include_directories("${CMAKE_SOURCE_DIR}/inc"
                     "${CMAKE_SOURCE_DIR}/dependencies/Alembic/inc/mac"
                     "${CMAKE_SOURCE_DIR}/dependencies/cgltf"
-					"${CMAKE_SOURCE_DIR}/dependencies/dr_libs"
+                    "${CMAKE_SOURCE_DIR}/dependencies/dr_libs"
                     "${CMAKE_SOURCE_DIR}/dependencies/glad"
                     "${CMAKE_SOURCE_DIR}/dependencies/GLFW"
                     "${CMAKE_SOURCE_DIR}/dependencies/glm"
@@ -24,20 +24,19 @@ set(project_headers
     inc/Game.h
     inc/GLTFLoader.h
     inc/Interpolation.h
-	inc/pch.h
+    inc/pch.h
     inc/Plane.h
     inc/PlayState.h
     inc/Quat.h
     inc/Ray.h
     inc/ResourceManager.h
-	inc/SceneGraph.h
-	inc/sfbxMeta.h
-	inc/sfbxRawVector.h
-	inc/sfbxTypes.h
+    inc/SceneGraph.h
+    inc/sfbxMeta.h
+    inc/sfbxRawVector.h
+    inc/sfbxTypes.h
     inc/Shader.h
     inc/ShaderLoader.h
     inc/SimpleMesh.h
-    inc/Sky.h
     inc/State.h
     inc/StaticMesh.h
     inc/Texture.h
@@ -47,7 +46,7 @@ set(project_headers
     inc/TransformTrack.h
     inc/Triangle.h
     inc/Utility.h
-	inc/VectorMath.h
+    inc/VectorMath.h
     inc/WebAlembicViewer.h
     inc/Window.h)
 
@@ -65,12 +64,11 @@ set(project_sources
     src/PlayState.cpp
     src/Quat.cpp
     src/Ray.cpp
-	src/SceneABC.cpp
+    src/SceneABC.cpp
     src/SceneGraph.cpp
     src/Shader.cpp
     src/ShaderLoader.cpp
     src/SimpleMesh.cpp
-    src/Sky.cpp
     src/StaticMesh.cpp
     src/Texture.cpp
     src/TextureLoader.cpp

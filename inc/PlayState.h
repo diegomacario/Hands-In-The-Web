@@ -7,8 +7,8 @@
 #ifdef ENABLE_AUDIO
 #include "AudioEngine.h"
 #endif
+#include "Shader.h"
 #include "Camera3.h"
-#include "Sky.h"
 #include "WebAlembicViewer.h"
 #include "AlembicMesh.h"
 #include "StaticMesh.h"
@@ -75,8 +75,6 @@ private:
    std::shared_ptr<Shader>                      mStaticMeshWithoutNormalsShader;
    std::shared_ptr<Shader>                      mStaticMeshWithNormalsShader;
    std::shared_ptr<Shader>                      mBlinnPhongShader;
-
-   Sky                                          mSky;
 
    float                                        mPlaybackSpeed = 1.0f;
 

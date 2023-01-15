@@ -149,9 +149,6 @@ void PlayState::render()
    renderGeisha();
    //renderSamurai();
 
-   // Remove translation from the view matrix before rendering the skybox
-   //mSky.Render(mCamera3.getPerspectiveProjectionMatrix() * glm::mat4(glm::mat3(mCamera3.getViewMatrix())));
-
 #ifdef ENABLE_IMGUI
    ImGui::Render();
    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -196,14 +193,6 @@ void PlayState::configureLights(const std::shared_ptr<Shader>& shader)
 void PlayState::loadHands()
 {
    mScene = wabc::LoadScene("resources/animations/handy.abc");
-   if (mScene)
-   {
-      std::cout << "Alembic scene loaded successfully!" << '\n';
-   }
-   else
-   {
-      std::cout << "Failed to load Alembic scene" << '\n';
-   }
 
    mScene->seek(0.0);
    wabc::IMesh* mesh = mScene->getMesh();
