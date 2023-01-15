@@ -30,7 +30,7 @@ void main()
 
    vec3 fragPos = vec3(model * vec4(position, 1.0f));
    // TODO: To support non-uniform scaling we will need to change the way we transform the normals
-   vec3 norm    = normalize(vec3(model * vec4(normal, 0.0f)));
+   vec3 norm    = normalize(mat3(model) * normal);
    vec3 viewDir = normalize(cameraPos - fragPos);
 
    vec3 shadedColor = vec3(0.0);
@@ -50,8 +50,14 @@ vec3 calculateContributionOfPointLight(PointLight light, vec3 fragPos, vec3 norm
 
    // Diffuse
    vec3  lightDir    = normalize(light.worldPos - fragPos);
-   vec3  diff        = max(dot(lightDir, norm), 0.0) * light.color * attenuation;
-   vec3  diffuse     = diff * diffuseColor;
+   float diff        = max(dot(lightDir, norm), 0.0);
+   vec3  diffuse     = diff * light.color * attenuation;
 
-   return diffuse;
+   // Specular
+   float specularStrength = 0.5;
+   vec3 reflectDir        = reflect(-lightDir, norm);
+   float spec             = pow(max(dot(viewDir, reflectDir), 0.0), 32);
+   vec3 specular          = specularStrength * spec * light.color * attenuation;
+
+   return (diffuse + specular) * diffuseColor;
 }

@@ -117,9 +117,7 @@ Window::Window(const std::string& title)
    , mCursorYOffset(0.0)
    , mScrollWheelMoved(false)
    , mScrollYOffset(0.0)
-#ifdef __EMSCRIPTEN__
-   , mScrollWheelSensitivity(0.0f)
-#endif
+   , mScrollWheelSensitivity(0.1f)
 #ifndef __EMSCRIPTEN__
    , mMultisampleFBO(0)
    , mMultisampleTexture(0)
@@ -579,12 +577,7 @@ void Window::scrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 {
    // TODO: Ideally this function would tell the camera to update its FOVY based on the Y offset.
    // I'm going to make the camera ask the window if it should update its FOVY. Is there a better way to do this?
-   mScrollYOffset = static_cast<float>(yOffset);
-
-#ifdef __EMSCRIPTEN__
-   mScrollYOffset *= mScrollWheelSensitivity;
-#endif
-
+   mScrollYOffset = static_cast<float>(yOffset) * mScrollWheelSensitivity;
    mScrollWheelMoved = true;
 }
 
