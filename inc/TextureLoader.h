@@ -26,23 +26,25 @@ public:
    TextureLoader& operator=(TextureLoader&&) = default;
 
    std::shared_ptr<Texture> loadResource(const std::string& texFilePath,
-                                         int*               outWidth  = nullptr,
-                                         int*               outHeight = nullptr,
-                                         unsigned int       wrapS     = GL_REPEAT,
-                                         unsigned int       wrapT     = GL_REPEAT,
-                                         unsigned int       minFilter = GL_LINEAR_MIPMAP_LINEAR,
-                                         unsigned int       magFilter = GL_LINEAR,
-                                         bool               genMipmap = true) const;
+                                         int*               outWidth       = nullptr,
+                                         int*               outHeight      = nullptr,
+                                         unsigned int       wrapS          = GL_REPEAT,
+                                         unsigned int       wrapT          = GL_REPEAT,
+                                         unsigned int       minFilter      = GL_LINEAR_MIPMAP_LINEAR,
+                                         unsigned int       magFilter      = GL_LINEAR,
+                                         bool               genMipmap      = true,
+                                         bool               flipVertically = false) const;
 
    std::shared_ptr<Texture> loadResource(const unsigned char* texDataBuffer,
                                          int                  texDataLength,
-                                         int*                 outWidth  = nullptr,
-                                         int*                 outHeight = nullptr,
-                                         unsigned int         wrapS     = GL_REPEAT,
-                                         unsigned int         wrapT     = GL_REPEAT,
-                                         unsigned int         minFilter = GL_LINEAR_MIPMAP_LINEAR,
-                                         unsigned int         magFilter = GL_LINEAR,
-                                         bool                 genMipmap = true) const;
+                                         int*                 outWidth       = nullptr,
+                                         int*                 outHeight      = nullptr,
+                                         unsigned int         wrapS          = GL_REPEAT,
+                                         unsigned int         wrapT          = GL_REPEAT,
+                                         unsigned int         minFilter      = GL_LINEAR_MIPMAP_LINEAR,
+                                         unsigned int         magFilter      = GL_LINEAR,
+                                         bool                 genMipmap      = true,
+                                         bool                 flipVertically = false) const;
 
 private:
 

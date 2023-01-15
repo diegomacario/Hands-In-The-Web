@@ -9,6 +9,8 @@ namespace Utility
 
    glm::vec2 normalizeWithZeroLengthCheck(const glm::vec2& v);
    glm::vec3 normalizeWithZeroLengthCheck(const glm::vec3& v);
+
+   glm::vec3 hexToColor(int hex);
 }
 
 #endif

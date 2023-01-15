@@ -11,10 +11,13 @@ std::shared_ptr<Texture> TextureLoader::loadResource(const std::string& texFileP
                                                      unsigned int       wrapT,
                                                      unsigned int       minFilter,
                                                      unsigned int       magFilter,
-                                                     bool               genMipmap) const
+                                                     bool               genMipmap,
+                                                     bool               flipVertically) const
 {
    int width, height, numComponents;
+   stbi_set_flip_vertically_on_load(flipVertically);
    std::unique_ptr<unsigned char, void(*)(void*)> texData(stbi_load(texFilePath.c_str(), &width, &height, &numComponents, STBI_rgb), stbi_image_free);
+   stbi_set_flip_vertically_on_load(false);
 
    if (!texData)
    {
@@ -51,10 +54,13 @@ std::shared_ptr<Texture> TextureLoader::loadResource(const unsigned char* texDat
                                                      unsigned int         wrapT,
                                                      unsigned int         minFilter,
                                                      unsigned int         magFilter,
-                                                     bool                 genMipmap) const
+                                                     bool                 genMipmap,
+                                                     bool                 flipVertically) const
 {
    int width, height, numComponents;
+   stbi_set_flip_vertically_on_load(flipVertically);
    std::unique_ptr<unsigned char, void(*)(void*)> texData(stbi_load_from_memory(texDataBuffer, texDataLength, &width, &height, &numComponents, STBI_rgb), stbi_image_free);
+   stbi_set_flip_vertically_on_load(false);
 
    if (!texData)
    {

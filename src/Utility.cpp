@@ -27,3 +27,12 @@ glm::vec3 Utility::normalizeWithZeroLengthCheck(const glm::vec3& v)
 
    return v / glm::sqrt(squaredLen);
 }
+
+glm::vec3 Utility::hexToColor(int hex)
+{
+   float r = static_cast<float>(((hex >> 16) & 0xff)) / 255.0f;
+   float g = static_cast<float>(((hex >> 8) & 0xff)) / 255.0f;
+   float b = static_cast<float>((hex & 0xff)) / 255.0f;
+
+   return glm::vec3(r, g, b);
+}

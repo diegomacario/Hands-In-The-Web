@@ -11,6 +11,8 @@
 #include "Sky.h"
 #include "WebAlembicViewer.h"
 #include "AlembicMesh.h"
+#include "StaticMesh.h"
+#include "Texture.h"
 
 class PlayState : public State
 {
@@ -46,11 +48,15 @@ private:
 
    void configureLights(const std::shared_ptr<Shader>& shader);
 
+   void loadHands();
+   void loadMask();
+
 #ifdef ENABLE_IMGUI
    void userInterface();
 #endif
 
    void renderHands();
+   void renderMask();
 
    void resetCamera();
 
@@ -77,6 +83,10 @@ private:
    AlembicMesh                                  mAlembicMesh;
    float                                        mAlembicAnimationDuration;
    float                                        mAlembicAnimationPlaybackTime = 0.0f;
+
+   std::vector<StaticMesh>                      mMaskMeshes;
+   std::shared_ptr<Texture>                     mMaskTexture;
+   std::shared_ptr<Texture>                     mEyesTexture;
 };
 
 #endif

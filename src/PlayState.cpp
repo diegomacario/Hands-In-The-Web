@@ -13,6 +13,9 @@
 #include "PlayState.h"
 #include "ResourceManager.h"
 #include "ShaderLoader.h"
+#include "GLTFLoader.h"
+#include "TextureLoader.h"
+#include "Transform.h"
 
 #ifdef ENABLE_AUDIO
 PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachine,
@@ -56,26 +59,9 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
    //mAudioEngine->loadSound("resources/sounds/....wav");
 #endif
 
-   mScene = wabc::LoadScene("resources/animations/handy.abc");
-   if (mScene)
-   {
-      std::cout << "Alembic scene loaded successfully!" << '\n';
-   }
-   else
-   {
-      std::cout << "Failed to load Alembic scene" << '\n';
-   }
+   loadHands();
 
-   mScene->seek(0.0);
-   wabc::IMesh* mesh = mScene->getMesh();
-   mAlembicMesh.InitializeBuffers(mesh);
-
-   int positionsAttribLoc = mHandsShader->getAttributeLocation("position");
-   int normalsAttribLoc   = mHandsShader->getAttributeLocation("normal");
-   mAlembicMesh.ConfigureVAO(positionsAttribLoc, normalsAttribLoc);
-
-   std::tuple<double, double> timeRange = mScene->getTimeRange();
-   mAlembicAnimationDuration = static_cast<float>(std::get<1>(timeRange));
+   loadMask();
 }
 
 void PlayState::enter()
@@ -161,8 +147,10 @@ void PlayState::render()
 
    renderHands();
 
+   renderMask();
+
    // Remove translation from the view matrix before rendering the skybox
-   mSky.Render(mCamera3.getPerspectiveProjectionMatrix() * glm::mat4(glm::mat3(mCamera3.getViewMatrix())));
+   //mSky.Render(mCamera3.getPerspectiveProjectionMatrix() * glm::mat4(glm::mat3(mCamera3.getViewMatrix())));
 
 #ifdef ENABLE_IMGUI
    ImGui::Render();
@@ -205,6 +193,54 @@ void PlayState::configureLights(const std::shared_ptr<Shader>& shader)
    shader->use(false);
 }
 
+void PlayState::loadHands()
+{
+   mScene = wabc::LoadScene("resources/animations/handy.abc");
+   if (mScene)
+   {
+      std::cout << "Alembic scene loaded successfully!" << '\n';
+   }
+   else
+   {
+      std::cout << "Failed to load Alembic scene" << '\n';
+   }
+
+   mScene->seek(0.0);
+   wabc::IMesh* mesh = mScene->getMesh();
+   mAlembicMesh.InitializeBuffers(mesh);
+
+   int positionsAttribLoc = mHandsShader->getAttributeLocation("position");
+   int normalsAttribLoc   = mHandsShader->getAttributeLocation("normal");
+   mAlembicMesh.ConfigureVAO(positionsAttribLoc, normalsAttribLoc);
+
+   std::tuple<double, double> timeRange = mScene->getTimeRange();
+   mAlembicAnimationDuration = static_cast<float>(std::get<1>(timeRange));
+}
+
+void PlayState::loadMask()
+{
+   cgltf_data* data = LoadGLTFFile("resources/models/mask/geisha.glb");
+   mMaskMeshes = LoadStaticMeshes(data);
+   FreeGLTFFile(data);
+
+   int positionsAttribLoc = mStaticMeshWithNormalsShader->getAttributeLocation("position");
+   int normalsAttribLoc   = mStaticMeshWithNormalsShader->getAttributeLocation("normal");
+   int texCoordsAttribLoc = mStaticMeshWithNormalsShader->getAttributeLocation("texCoord");
+
+   for (unsigned int i = 0,
+        size = static_cast<unsigned int>(mMaskMeshes.size());
+        i < size;
+        ++i)
+   {
+      mMaskMeshes[i].ConfigureVAO(positionsAttribLoc,
+                                  normalsAttribLoc,
+                                  texCoordsAttribLoc);
+   }
+
+   mMaskTexture = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/mask/mask.jpeg", nullptr, nullptr, GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, true, true);
+   mEyesTexture = ResourceManager<Texture>().loadUnmanagedResource<TextureLoader>("resources/models/mask/eyes.png", nullptr, nullptr, GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, true, true);
+}
+
 #ifdef ENABLE_IMGUI
 void PlayState::userInterface()
 {
@@ -231,13 +267,49 @@ void PlayState::renderHands()
    mHandsShader->setUniformMat4("view",         mCamera3.getViewMatrix());
    mHandsShader->setUniformMat4("projection",   mCamera3.getPerspectiveProjectionMatrix());
    mHandsShader->setUniformVec3("cameraPos",    mCamera3.getPosition());
-   mHandsShader->setUniformVec3("diffuseColor", glm::vec3(1.0f, 1.0f, 1.0f));
+   // Grey
+   //mHandsShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd9d2d7));
+   // White
+   //mHandsShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xf2eeef));
+   // Pink
+   //mHandsShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd99aa3));
+   // Red
+   mHandsShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
 
    glFrontFace(GL_CW);
    mAlembicMesh.Render();
    glFrontFace(GL_CCW);
 
    mHandsShader->use(false);
+}
+
+void PlayState::renderMask()
+{
+   wabc::span<wabc::ICamera*> cameras = mScene->getCameras();
+   wabc::float3 cameraPosition        = cameras[0]->getPosition();
+   wabc::float3 cameraDirection       = cameras[0]->getDirection();
+   wabc::float3 cameraUp              = cameras[0]->getUp();
+
+   Transform modelTransform(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
+                            Q::lookRotation(glm::vec3(cameraDirection.x, cameraDirection.y, cameraDirection.z),
+                            glm::vec3(cameraUp.x, cameraUp.y, cameraUp.z)), glm::vec3(0.1f, 0.1f, 0.1f));
+
+   mStaticMeshWithNormalsShader->use(true);
+   mStaticMeshWithNormalsShader->setUniformMat4("model", transformToMat4(modelTransform));
+   mStaticMeshWithNormalsShader->setUniformMat4("view", mCamera3.getViewMatrix());
+   mStaticMeshWithNormalsShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
+   //mStaticMeshWithNormalsShader->setUniformVec3("cameraPos", mCamera3.getPosition());
+
+   mMaskTexture->bind(0, mStaticMeshWithNormalsShader->getUniformLocation("diffuseTex"));
+   mMaskMeshes[1].Render();
+   mMaskTexture->unbind(0);
+
+   mEyesTexture->bind(0, mStaticMeshWithNormalsShader->getUniformLocation("diffuseTex"));
+   mMaskMeshes[0].Render();
+   mMaskMeshes[2].Render();
+   mEyesTexture->unbind(0);
+
+   mStaticMeshWithNormalsShader->use(false);
 }
 
 void PlayState::resetCamera()
