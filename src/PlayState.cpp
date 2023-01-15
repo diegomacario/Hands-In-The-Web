@@ -39,8 +39,10 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
    configureLights(mStaticMeshWithNormalsShader);
 
    // Initialize the hands shader
-   mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/gourad.vert",
-                                                                                "resources/shaders/gourad.frag");
+   //mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/gourad.vert",
+   //                                                                             "resources/shaders/gourad.frag");
+   mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/blinn_phong.vert",
+                                                                                "resources/shaders/blinn_phong.frag");
    configureLights(mHandsShader);
 
    // Set the listener data

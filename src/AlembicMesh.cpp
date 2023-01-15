@@ -42,29 +42,29 @@ AlembicMesh& AlembicMesh::operator=(AlembicMesh&& rhs) noexcept
 
 void AlembicMesh::InitializeBuffers(wabc::IMesh* mesh)
 {
+   mNumVertices = static_cast<unsigned int>(mesh->getPoints().size());
+   mNumIndices  = static_cast<unsigned int>(mesh->getFaceIndices().size());
+
    glBindVertexArray(mVAO);
 
    // Load the mesh's data into the buffers
 
    // Positions
    glBindBuffer(GL_ARRAY_BUFFER, mVBOs[VBOTypes::positions]);
-   glBufferData(GL_ARRAY_BUFFER, mesh->getPoints().size() * sizeof(wabc::float3), nullptr, GL_STREAM_DRAW);
+   glBufferData(GL_ARRAY_BUFFER, mNumVertices * sizeof(wabc::float3), nullptr, GL_STREAM_DRAW);
    // Normals
    glBindBuffer(GL_ARRAY_BUFFER, mVBOs[VBOTypes::normals]);
-   glBufferData(GL_ARRAY_BUFFER, mesh->getPoints().size() * sizeof(wabc::float3), nullptr, GL_STREAM_DRAW);
+   glBufferData(GL_ARRAY_BUFFER, mNumVertices * sizeof(wabc::float3), nullptr, GL_STREAM_DRAW);
 
    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
    // Indices
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
-   glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->getFaceIndices().size() * sizeof(int), mesh->getFaceIndices().data(), GL_STATIC_DRAW);
+   glBufferData(GL_ELEMENT_ARRAY_BUFFER, mNumIndices * sizeof(int), mesh->getFaceIndices().data(), GL_STATIC_DRAW);
 
    // Unbind the VAO first, then the EBO
    glBindVertexArray(0);
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-   mNumVertices = static_cast<unsigned int>(mesh->getPoints().size());
-   mNumIndices = static_cast<unsigned int>(mesh->getFaceIndices().size());
 }
 
 void AlembicMesh::UpdateBuffers(wabc::IMesh* mesh)
@@ -96,10 +96,10 @@ void AlembicMesh::UpdateBuffers(wabc::IMesh* mesh)
 
    // Positions
    glBindBuffer(GL_ARRAY_BUFFER, mVBOs[VBOTypes::positions]);
-   glBufferSubData(GL_ARRAY_BUFFER, 0, mesh->getPoints().size() * sizeof(wabc::float3), mesh->getPoints().data());
+   glBufferSubData(GL_ARRAY_BUFFER, 0, mNumVertices * sizeof(wabc::float3), mesh->getPoints().data());
    // Normals
    glBindBuffer(GL_ARRAY_BUFFER, mVBOs[VBOTypes::normals]);
-   glBufferSubData(GL_ARRAY_BUFFER, 0, normals.size() * sizeof(wabc::float3), &normals[0]);
+   glBufferSubData(GL_ARRAY_BUFFER, 0, mNumVertices * sizeof(wabc::float3), &normals[0]);
 
    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
