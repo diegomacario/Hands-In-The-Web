@@ -1,0 +1,96 @@
+<!doctypehtml>
+<html lang=en-us>
+
+<head>
+    <meta charset=utf-8>
+    <meta content="text/html; charset=utf-8" http-equiv=Content-Type>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            margin: 0;
+            padding: none;
+            background-color: black;
+        }
+
+        canvas.emscripten {
+            border: 0 none;
+            background-color: #000;
+            outline: 0;
+        }
+
+        #canvas_container {
+            display: flex;
+        }
+
+        #loading_container {
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #webgl_unsupported_popup {
+            background-image: linear-gradient(to right, red , orange);
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px;
+            display: none;
+        }
+
+        #learn_more_button {
+            display: none;
+            user-select: none;
+            font-size: 32px;
+            text-align:center;
+            line-height: 32px;
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .fa-twitter {
+            color: white;
+            text-decoration: none;
+        }
+
+        .fa-twitter:hover {
+            color: #1DA1F2;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading_container">
+        <div class=spinner id=spinner></div>
+        <div id=status>Downloading...</div>
+        <div class=emscripten><progress hidden id=progress max=100 value=0></progress></div>
+    </div>
+
+    <div id="webgl_unsupported_popup">
+        Woops! Your browser doesn't support WebGL 2.0 - Please try using Chrome or Firefox.
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div id="learn_more_button">
+        <a href="https://twitter.com/maca_graphics" target="_blank" class="fa fa-twitter"></a>
+    </div>
+
+    <div id="canvas_container">
+        <canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas>
+    </div>
+
+    <!-- <textarea id=output rows=8></textarea> -->
+
+    <script src="Hands-In-The-Web-UI.js"></script>
+    <script async src=Hands-In-The-Web.js></script>
+</body>
+
+</html>

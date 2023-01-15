@@ -7,6 +7,31 @@ An example of how to bring mocap data from handy to the web.
 - The geisha mask was created by [naxete](https://sketchfab.com/naxete). It can be found [here](https://sketchfab.com/3d-models/ghost-in-the-shell-geisha-mask-79df6677512249e9b98b898676182e1b).
 - The samurai mask was created by [flioink](https://sketchfab.com/flioink). It can be found [here](https://sketchfab.com/3d-models/samurai-mask-model-2-70a43b389819494f9fa23065ede03afc).
 
+## Building
+
+To build this project for the web I did the following:
+
+- In the root directory of my emscripten clone I ran this command:
+
+```
+source ./emsdk_env.sh
+```
+
+- Then I navigated to the `build` folder that's in the root of this repository and ran these commands:
+
+```
+emcmake cmake ..
+make
+```
+
+- After that I ran a local webserver with this command:
+
+```
+python -m http.server
+```
+
+- That allowed me to see the project running here: http://localhost:8000/
+
 ## Libraries
 
 To get this to work I had to build the [Imath](https://github.com/AcademySoftwareFoundation/Imath) and [Alembic](https://github.com/alembic/alembic) libraries using `emcmake`.

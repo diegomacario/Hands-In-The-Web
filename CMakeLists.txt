@@ -80,13 +80,13 @@ set(project_sources
     src/Window.cpp
     dependencies/cgltf/cgltf/cgltf.c
     dependencies/dr_libs/dr_libs/dr_wav.c
-    #dependencies/imgui/imgui/imgui.cpp
-    #dependencies/imgui/imgui/imgui_demo.cpp
-    #dependencies/imgui/imgui/imgui_draw.cpp
-    #dependencies/imgui/imgui/imgui_impl_glfw.cpp
-    #dependencies/imgui/imgui/imgui_impl_opengl3.cpp
-    #dependencies/imgui/imgui/imgui_tables.cpp
-    #dependencies/imgui/imgui/imgui_widgets.cpp
+    dependencies/imgui/imgui/imgui.cpp
+    dependencies/imgui/imgui/imgui_demo.cpp
+    dependencies/imgui/imgui/imgui_draw.cpp
+    dependencies/imgui/imgui/imgui_impl_glfw.cpp
+    dependencies/imgui/imgui/imgui_impl_opengl3.cpp
+    dependencies/imgui/imgui/imgui_tables.cpp
+    dependencies/imgui/imgui/imgui_widgets.cpp
     dependencies/stb_image/stb_image/stb_image.cpp)
 
 # This path must be relative to the location of the build folder
@@ -97,7 +97,7 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 set(CMAKE_CXX_FLAGS "-std=c++17 -O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
 
 # Uncomment this line and the imgui .cpp files above to enable IMGUI
-#add_definitions(-DENABLE_IMGUI)
+add_definitions(-DENABLE_IMGUI)
 
 # Uncomment this line and the AudioEngine.cpp, AudioSource.cpp, AudioEngine.h and AudioSource.h files above to enable audio
 #add_definitions(-DENABLE_AUDIO)
