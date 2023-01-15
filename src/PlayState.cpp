@@ -27,7 +27,7 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
 #ifdef ENABLE_AUDIO
    , mAudioEngine(audioEngine)
 #endif
-   , mCamera3(4.5f, 45.0f, glm::vec3(0.0f), Q::angleAxis(glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 10.0f, -90.0f, 90.0f, 45.0f, 1280.0f / 720.0f, 0.1f, 130.0f, 0.25f)
+   , mCamera3(1.0f, 15.0f, glm::vec3(0.0f, 1.25f, 0.0), Q::angleAxis(glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 10.0f, -90.0f, 90.0f, 45.0f, 1280.0f / 720.0f, 0.1f, 130.0f, 0.25f)
 {
    // Initialize the static mesh without normals shader
    mStaticMeshWithoutNormalsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/static_mesh_without_normals.vert",
@@ -39,8 +39,9 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
    configureLights(mStaticMeshWithNormalsShader);
 
    // Initialize the hands shader
-   mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/hands.vert",
-                                                                                "resources/shaders/hands.frag");
+   mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/gourad.vert",
+                                                                                "resources/shaders/gourad.frag");
+   configureLights(mHandsShader);
 
    // Set the listener data
 #ifdef ENABLE_AUDIO
@@ -130,7 +131,7 @@ void PlayState::update(float deltaTime)
 #endif
 
    // Update the hands
-   mAlembicAnimationPlaybackTime += deltaTime;
+   mAlembicAnimationPlaybackTime += deltaTime * mPlaybackSpeed;
    if (mAlembicAnimationPlaybackTime > mAlembicAnimationDuration)
    {
       mAlembicAnimationPlaybackTime -= mAlembicAnimationDuration;
@@ -194,7 +195,7 @@ void PlayState::configureLights(const std::shared_ptr<Shader>& shader)
 {
    shader->use(true);
 
-   shader->setUniformVec3( "pointLights[0].worldPos",  glm::vec3(0.0f, 0.0f, 0.0f));
+   shader->setUniformVec3( "pointLights[0].worldPos",  glm::vec3(0.0f, 1.25f, 1.0f));
    shader->setUniformVec3( "pointLights[0].color",     glm::vec3(1.0f));
    shader->setUniformFloat("pointLights[0].linearAtt", 0.00115f);
 
@@ -224,17 +225,21 @@ void PlayState::renderHands()
    mAlembicMesh.UpdateBuffers(mesh);
 
    mHandsShader->use(true);
-   mHandsShader->setUniformMat4("model",      glm::mat4(1.0f));
-   mHandsShader->setUniformMat4("view",       mCamera3.getViewMatrix());
-   mHandsShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
+   mHandsShader->setUniformMat4("model",        glm::mat4(1.0f));
+   mHandsShader->setUniformMat4("view",         mCamera3.getViewMatrix());
+   mHandsShader->setUniformMat4("projection",   mCamera3.getPerspectiveProjectionMatrix());
+   mHandsShader->setUniformVec3("cameraPos",    mCamera3.getPosition());
+   mHandsShader->setUniformVec3("diffuseColor", glm::vec3(1.0f, 1.0f, 1.0f));
 
+   glFrontFace(GL_CW);
    mAlembicMesh.Render();
+   glFrontFace(GL_CCW);
 
    mHandsShader->use(false);
 }
 
 void PlayState::resetCamera()
 {
-   mCamera3.reposition(4.5f, 45.0f, glm::vec3(0.0f), Q::quat(), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 10.0f, -90.0f, 90.0f);
+   mCamera3.reposition(1.0f, 15.0f, glm::vec3(0.0f, 1.25f, 0.0f), Q::quat(), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 10.0f, -90.0f, 90.0f);
    mCamera3.processMouseMovement(180.0f / 0.25f, 0.0f);
 }

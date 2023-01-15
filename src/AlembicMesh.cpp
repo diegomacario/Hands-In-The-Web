@@ -48,10 +48,10 @@ void AlembicMesh::InitializeBuffers(wabc::IMesh* mesh)
 
    // Positions
    glBindBuffer(GL_ARRAY_BUFFER, mVBOs[VBOTypes::positions]);
-   glBufferData(GL_ARRAY_BUFFER, mesh->getPoints().size() * sizeof(wabc::float3), mesh->getPoints().data(), GL_STREAM_DRAW);
+   glBufferData(GL_ARRAY_BUFFER, mesh->getPoints().size() * sizeof(wabc::float3), nullptr, GL_STREAM_DRAW);
    // Normals
    glBindBuffer(GL_ARRAY_BUFFER, mVBOs[VBOTypes::normals]);
-   glBufferData(GL_ARRAY_BUFFER, mesh->getNormals().size() * sizeof(wabc::float3), mesh->getNormals().data(), GL_STREAM_DRAW);
+   glBufferData(GL_ARRAY_BUFFER, mesh->getPoints().size() * sizeof(wabc::float3), nullptr, GL_STREAM_DRAW);
 
    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -69,6 +69,27 @@ void AlembicMesh::InitializeBuffers(wabc::IMesh* mesh)
 
 void AlembicMesh::UpdateBuffers(wabc::IMesh* mesh)
 {
+   wabc::span<wabc::float3> points = mesh->getPoints();
+   wabc::span<int> indices = mesh->getFaceIndices();
+
+   std::vector<wabc::float3> normals;
+   normals.resize(points.size());
+   for (unsigned int i = 0; i < indices.size(); i += 3)
+   {
+      wabc::float3 v0 = points[indices[i]];
+      wabc::float3 v1 = points[indices[i + 1]];
+      wabc::float3 v2 = points[indices[i + 2]];
+
+      wabc::float3 v20 = wabc::normalize(v2 - v0);
+      wabc::float3 v10 = wabc::normalize(v1 - v0);
+
+      wabc::float3 normal = wabc::normalize(wabc::cross(v20, v10));
+
+      normals[indices[i]] = normal;
+      normals[indices[i + 1]] = normal;
+      normals[indices[i + 2]] = normal;
+   }
+
    glBindVertexArray(mVAO);
 
    // Load the mesh's data into the buffers
@@ -78,7 +99,7 @@ void AlembicMesh::UpdateBuffers(wabc::IMesh* mesh)
    glBufferSubData(GL_ARRAY_BUFFER, 0, mesh->getPoints().size() * sizeof(wabc::float3), mesh->getPoints().data());
    // Normals
    glBindBuffer(GL_ARRAY_BUFFER, mVBOs[VBOTypes::normals]);
-   glBufferSubData(GL_ARRAY_BUFFER, 0, mesh->getNormals().size() * sizeof(wabc::float3), mesh->getNormals().data());
+   glBufferSubData(GL_ARRAY_BUFFER, 0, normals.size() * sizeof(wabc::float3), &normals[0]);
 
    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
