@@ -2,6 +2,7 @@
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten/emscripten.h>
+#include <emscripten/html5.h>
 #endif
 
 #ifdef ENABLE_IMGUI
@@ -250,16 +251,46 @@ void PlayState::loadSamurai()
    }
 }
 
+#ifdef __EMSCRIPTEN__
+EM_JS(void, openReadme, (), {
+   window.open("https://github.com/diegomacario/Hands-In-The-Web");
+});
+#endif
+
 #ifdef ENABLE_IMGUI
 void PlayState::userInterface()
 {
    ImGui::SetNextWindowPos(ImVec2(10.0f, 10.0f), ImGuiCond_Appearing);
 
    char title[64];
-   snprintf(title, 32, "Hands In The Web (%.1f FPS)###HandsInTheWeb", ImGui::GetIO().Framerate);
+   snprintf(title, 32, "Handy (%.1f FPS)###Handy", ImGui::GetIO().Framerate);
    ImGui::Begin(title, nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize);
 
-   ImGui::SliderFloat("Playback speed", &mPlaybackSpeed, 0.0f, 1.0f, "%.3f");
+   ImGui::Text("The animation you see here was motion-captured using a\n"
+               "Meta Quest headset and a tool we open-sourced at Shopify\n"
+               "called \"handy\". Click the button below to learn more\n"
+               "about how this works:");
+
+#ifdef __EMSCRIPTEN__
+   if (ImGui::Button("Open README"))
+   {
+      openReadme();
+   }
+#endif
+
+   if (ImGui::CollapsingHeader("Controls", nullptr, ImGuiTreeNodeFlags_DefaultOpen))
+   {
+      ImGui::BulletText("Hold the left mouse button and move the mouse\n"
+                        "to rotate the camera.");
+      ImGui::BulletText("Use the scroll wheel to zoom in and out.");
+   }
+
+#ifndef __EMSCRIPTEN__
+   if (ImGui::CollapsingHeader("Settings", nullptr, ImGuiTreeNodeFlags_DefaultOpen))
+   {
+      ImGui::SliderFloat("Playback speed", &mPlaybackSpeed, 0.0f, 1.0f, "%.3f");
+   }
+#endif
 
    ImGui::End();
 }
