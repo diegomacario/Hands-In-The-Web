@@ -40,10 +40,6 @@ public:
    void render() override;
    void exit() override;
 
-#ifdef __EMSCRIPTEN__
-   void setupCameraForTouchControl(bool touchControlsEnabled);
-#endif
-
 private:
 
    void configureLights(const std::shared_ptr<Shader>& shader);
@@ -89,6 +85,8 @@ private:
    std::shared_ptr<Texture>                     mGeishaEyesTexture;
 
    std::vector<StaticMesh>                      mSamuraiMeshes;
+
+   bool                                         mRenderGeisha = true;
 };
 
 #endif

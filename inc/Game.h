@@ -26,8 +26,6 @@ public:
 
 #ifdef __EMSCRIPTEN__
    void  updateWindowDimensions(int width, int height);
-
-   void  enableTouchControlOfCamera(bool enable);
 #endif
 
 private:

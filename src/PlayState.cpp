@@ -147,8 +147,14 @@ void PlayState::render()
    glEnable(GL_DEPTH_TEST);
 
    renderHands();
-   renderGeisha();
-   //renderSamurai();
+   if (mRenderGeisha)
+   {
+      renderGeisha();
+   }
+   else
+   {
+      renderSamurai();
+   }
 
 #ifdef ENABLE_IMGUI
    ImGui::Render();
@@ -167,17 +173,6 @@ void PlayState::exit()
 {
 
 }
-
-#ifdef __EMSCRIPTEN__
-void PlayState::setupCameraForTouchControl(bool touchControlsEnabled)
-{
-   if (touchControlsEnabled)
-   {
-      mWindow->setTouchControlsEnabled(true);
-      mWindow->enableCursor(true);
-   }
-}
-#endif
 
 void PlayState::configureLights(const std::shared_ptr<Shader>& shader)
 {
@@ -289,6 +284,8 @@ void PlayState::userInterface()
    if (ImGui::CollapsingHeader("Settings", nullptr, ImGuiTreeNodeFlags_DefaultOpen))
    {
       ImGui::SliderFloat("Playback speed", &mPlaybackSpeed, 0.0f, 1.0f, "%.3f");
+
+      ImGui::Checkbox("Render geisha", &mRenderGeisha);
    }
 #endif
 
@@ -307,14 +304,29 @@ void PlayState::renderHands()
    mBlinnPhongShader->setUniformMat4("view", mCamera3.getViewMatrix());
    mBlinnPhongShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
    mBlinnPhongShader->setUniformVec3("cameraPos",    mCamera3.getPosition());
-   // Grey
-   //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd9d2d7));
-   // White
-   //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xf2eeef));
-   // Pink
-   //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd99aa3));
-   // Red
-   mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
+
+   if (mRenderGeisha)
+   {
+      // Grey
+      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd9d2d7));
+      // White
+      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xf2eeef));
+      // Pink
+      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd99aa3));
+      // Red
+      mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
+   }
+   else
+   {
+      // Super light gold
+      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xfff8f1));
+      // Light gold
+      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xffd9ab));
+      // Blue
+      mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0x73b1ff));
+      // Wine
+      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0x6f0022));
+   }
 
    glFrontFace(GL_CW);
    mAlembicMesh.Render();
@@ -368,8 +380,8 @@ void PlayState::renderSamurai()
    mBlinnPhongShader->setUniformMat4("view", mCamera3.getViewMatrix());
    mBlinnPhongShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
    mBlinnPhongShader->setUniformVec3("cameraPos", mCamera3.getPosition());
-   // Red
-   mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
+   // Gold
+   mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xffc173));
 
    for (unsigned int i = 0,
         size = static_cast<unsigned int>(mSamuraiMeshes.size());

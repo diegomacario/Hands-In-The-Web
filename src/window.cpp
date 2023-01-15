@@ -42,58 +42,6 @@ EM_JS(float, getBrowserScrollWheelSensitivity, (), {
       return -0.02;
    }
 });
-
-float startX = -1;
-float startY = -1;
-
-float touchDiffX = 0;
-float touchDiffY = 0;
-
-EM_BOOL on_touchstart(int eventType, const EmscriptenTouchEvent* event, void* userData)
-{
-   // Docs say touches is of size 32.
-   // TODO: DG check if this madness is safe.
-   for (int i = 0; i < 32; ++i)
-   {
-      if (event->touches[i].isChanged == 1 && event->touches[i].onTarget == 1)
-      {
-         startX = event->touches[i].clientX;
-         startY = event->touches[i].clientY;
-         return 0;
-      }
-   }
-
-   return 0;
-}
-
-EM_BOOL on_touchend(int eventType, const EmscriptenTouchEvent* event, void* userData)
-{
-   touchDiffX = 0;
-   touchDiffY = 0;
-   return 0;
-}
-
-EM_BOOL on_touchmove(int eventType, const EmscriptenTouchEvent* event, void* userData)
-{
-   for (int i = 0; i < 32; ++i)
-   {
-      if (event->touches[i].isChanged == 1 && event->touches[i].onTarget == 1)
-      {
-         float newX = event->touches[i].clientX;
-         float newY = event->touches[i].clientY;
-
-         touchDiffX = newX - startX;
-         touchDiffY = newY - startY;
-
-         startX = newX;
-         startY = newY;
-
-         return 0;
-      }
-   }
-
-   return 0;
-}
 #endif
 
 Window::Window(const std::string& title)
@@ -208,12 +156,6 @@ bool Window::initialize()
       std::cout << "Error - Window::initialize - Failed to configure anti-aliasing support" << "\n";
       return false;
    }
-#endif
-
-#ifdef __EMSCRIPTEN__
-   emscripten_set_touchstart_callback("#canvas", NULL, 0, on_touchstart);
-   emscripten_set_touchend_callback("#canvas", NULL, 0, on_touchend);
-   emscripten_set_touchmove_callback("#canvas", NULL, 0, on_touchmove);
 #endif
 
    setInputCallbacks();
@@ -405,25 +347,11 @@ void Window::resetFirstMove()
 
 float Window::getCursorXOffset() const
 {
-#ifdef __EMSCRIPTEN__
-   if (mTouchControlsEnabled)
-   {
-      return touchDiffX;
-   }
-#endif
-
    return mCursorXOffset;
 }
 
 float Window::getCursorYOffset() const
 {
-#ifdef __EMSCRIPTEN__
-   if (mTouchControlsEnabled)
-   {
-      return touchDiffY;
-   }
-#endif
-
    return mCursorYOffset;
 }
 

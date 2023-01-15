@@ -52,11 +52,6 @@ public:
    void         enableCursor(bool enable);
    bool         isMouseButtonPressed(int button);
 
-#ifdef __EMSCRIPTEN__
-   // Touch
-   void         setTouchControlsEnabled(bool enable) { mTouchControlsEnabled = enable; }
-#endif
-
    // Scroll wheel
    bool         scrollWheelMoved() const;
    void         resetScrollWheelMoved();
@@ -115,11 +110,6 @@ private:
    double                         mLastCursorYPos;
    float                          mCursorXOffset;
    float                          mCursorYOffset;
-
-#ifdef __EMSCRIPTEN__
-   // Touch
-   bool                           mTouchControlsEnabled;
-#endif
 
    // Scroll wheel
    mutable bool                   mScrollWheelMoved;
