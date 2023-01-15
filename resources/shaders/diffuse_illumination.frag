@@ -36,14 +36,21 @@ void main()
 
 vec3 calculateContributionOfPointLight(PointLight light, vec3 viewDir)
 {
-   // Attenuation
-   float distance    = length(light.worldPos - fragPos);
-   float attenuation = 1.0 / (1.0 + (light.linearAtt * distance));
+   vec3 diffuseColor = vec3(texture(diffuseTex, uv));
+
+   // Ambient
+   vec3 ambient = 0.05 * diffuseColor;
 
    // Diffuse
-   vec3  lightDir    = normalize(light.worldPos - fragPos);
-   vec3  diff        = max(dot(lightDir, norm), 0.0) * light.color * attenuation;
-   vec3  diffuse     = (diff * vec3(texture(diffuseTex, uv)));
+   vec3 lightDir = normalize(light.worldPos - fragPos);
+   float diff    = max(dot(lightDir, norm), 0.0);
+   vec3 diffuse  = diff * diffuseColor;
 
-   return diffuse;
+   // specular
+   vec3 reflectDir = reflect(-lightDir, norm);
+   vec3 halfwayDir = normalize(lightDir + viewDir);
+   float spec      = pow(max(dot(norm, halfwayDir), 0.0), 32.0);
+   vec3 specular   = vec3(0.3) * spec;
+
+   return (ambient + diffuse + specular);
 }

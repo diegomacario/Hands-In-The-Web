@@ -35,18 +35,12 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
 #endif
    , mCamera3(1.0f, 15.0f, glm::vec3(0.0f, 1.25f, 0.0), Q::angleAxis(glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f, 45.0f, 1280.0f / 720.0f, 0.1f, 130.0f, 0.25f)
 {
-   // Initialize the static mesh without normals shader
-   mStaticMeshWithoutNormalsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/static_mesh_without_normals.vert",
-                                                                                                   "resources/shaders/baked_illumination.frag");
-
    // Initialize the static mesh with normals shader
    mStaticMeshWithNormalsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/static_mesh_with_normals.vert",
                                                                                                 "resources/shaders/diffuse_illumination.frag");
    configureLights(mStaticMeshWithNormalsShader);
 
    // Initialize the hands shader
-   //mHandsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/gourad.vert",
-   //                                                                             "resources/shaders/gourad.frag");
    mBlinnPhongShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/blinn_phong.vert",
                                                                                      "resources/shaders/blinn_phong.frag");
    configureLights(mBlinnPhongShader);
@@ -358,7 +352,7 @@ void PlayState::renderGeisha()
    mStaticMeshWithNormalsShader->setUniformMat4("model", transformToMat4(modelTransform));
    mStaticMeshWithNormalsShader->setUniformMat4("view", mCamera3.getViewMatrix());
    mStaticMeshWithNormalsShader->setUniformMat4("projection", mCamera3.getPerspectiveProjectionMatrix());
-   //mStaticMeshWithNormalsShader->setUniformVec3("cameraPos", mCamera3.getPosition());
+   mStaticMeshWithNormalsShader->setUniformVec3("cameraPos", mCamera3.getPosition());
 
    mGeishaFaceTexture->bind(0, mStaticMeshWithNormalsShader->getUniformLocation("diffuseTex"));
    mGeishaMeshes[1].Render();

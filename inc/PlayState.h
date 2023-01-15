@@ -68,7 +68,6 @@ private:
 
    Camera3                                      mCamera3;
 
-   std::shared_ptr<Shader>                      mStaticMeshWithoutNormalsShader;
    std::shared_ptr<Shader>                      mStaticMeshWithNormalsShader;
    std::shared_ptr<Shader>                      mBlinnPhongShader;
 
