@@ -105,7 +105,4 @@ window.addEventListener('load', () => {
     if (!gl) {
       document.getElementById('webgl_unsupported_popup').style.display = 'block';
     }
-    else {
-      document.getElementById('learn_more_button').style.display = 'block';
-    }
 });

@@ -76,7 +76,6 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 
 set(CMAKE_CXX_FLAGS "-std=c++17 -O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -o index.html --preload-file ${project_resources} --use-preload-plugins")
 
-# Uncomment this line and the imgui .cpp files above to enable IMGUI
 add_definitions(-DENABLE_IMGUI)
 
 add_executable(${PROJECT_NAME} ${project_headers} ${project_sources})
