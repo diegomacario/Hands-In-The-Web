@@ -252,7 +252,7 @@ void PlayState::loadSamurai()
 
 #ifdef __EMSCRIPTEN__
 EM_JS(void, openReadme, (), {
-   window.open("https://github.com/diegomacario/Hands-In-The-Web-Page");
+   window.open("https://github.com/Shopify/handy");
 });
 #endif
 
