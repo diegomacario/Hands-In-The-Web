@@ -33,7 +33,7 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
 #ifdef ENABLE_AUDIO
    , mAudioEngine(audioEngine)
 #endif
-   , mCamera3(1.0f, 15.0f, glm::vec3(0.0f, 1.25f, 0.0), Q::angleAxis(glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f, 45.0f, 1280.0f / 720.0f, 0.1f, 130.0f, 0.25f)
+   , mCamera3(0.8f, 10.0f, glm::vec3(0.0f, 1.25f, 0.0), Q::angleAxis(glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f, 45.0f, 1280.0f / 720.0f, 0.1f, 130.0f, 0.25f)
 {
    // Initialize the static mesh with normals shader
    mStaticMeshWithNormalsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/static_mesh_with_normals.vert",
@@ -122,7 +122,7 @@ void PlayState::update(float deltaTime)
 
    // Update the hands
    mAlembicAnimationPlaybackTime += deltaTime * mPlaybackSpeed;
-   if (mAlembicAnimationPlaybackTime > mAlembicAnimationDuration)
+   if (mAlembicAnimationPlaybackTime > mAlembicAnimationEndTime)
    {
       mAlembicAnimationPlaybackTime -= mAlembicAnimationDuration;
    }
@@ -189,7 +189,7 @@ void PlayState::configureLights(const std::shared_ptr<Shader>& shader)
 
 void PlayState::loadHands()
 {
-   mScene = wabc::LoadScene("resources/animations/handy.abc");
+   mScene = wabc::LoadScene("resources/animations/motion_capture_data.abc");
 
    mScene->seek(0.0);
    wabc::IMesh* mesh = mScene->getMesh();
@@ -200,7 +200,10 @@ void PlayState::loadHands()
    mAlembicMesh.ConfigureVAO(positionsAttribLoc, normalsAttribLoc);
 
    std::tuple<double, double> timeRange = mScene->getTimeRange();
-   mAlembicAnimationDuration = static_cast<float>(std::get<1>(timeRange));
+   mAlembicAnimationStartTime    = static_cast<float>(std::get<0>(timeRange));
+   mAlembicAnimationEndTime      = static_cast<float>(std::get<1>(timeRange)) - 1.0f;
+   mAlembicAnimationDuration     = mAlembicAnimationEndTime - mAlembicAnimationStartTime;
+   mAlembicAnimationPlaybackTime = mAlembicAnimationStartTime;
 }
 
 void PlayState::loadGeisha()
@@ -284,7 +287,7 @@ void PlayState::userInterface()
    if (ImGui::CollapsingHeader("Settings", nullptr, ImGuiTreeNodeFlags_DefaultOpen))
    {
 #ifndef __EMSCRIPTEN__
-      ImGui::SliderFloat("Playback speed", &mPlaybackSpeed, 0.0f, 1.0f, "%.3f");
+      ImGui::SliderFloat("Playback speed", &mPlaybackSpeed, 0.0f, 2.0f, "%.3f");
 #endif
 
       ImGui::RadioButton("Geisha", &mCharacterIndex, 0);
@@ -398,6 +401,6 @@ void PlayState::renderSamurai()
 
 void PlayState::resetCamera()
 {
-   mCamera3.reposition(1.0f, 15.0f, glm::vec3(0.0f, 1.25f, 0.0f), Q::quat(), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f);
+   mCamera3.reposition(0.8f, 10.0f, glm::vec3(0.0f, 1.25f, 0.0f), Q::quat(), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f);
    mCamera3.processMouseMovement(180.0f / 0.25f, 0.0f);
 }

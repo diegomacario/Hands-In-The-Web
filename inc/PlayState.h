@@ -76,8 +76,10 @@ private:
    wabc::IScenePtr                              mScene;
 
    AlembicMesh                                  mAlembicMesh;
+   float                                        mAlembicAnimationStartTime;
+   float                                        mAlembicAnimationEndTime;
    float                                        mAlembicAnimationDuration;
-   float                                        mAlembicAnimationPlaybackTime = 0.0f;
+   float                                        mAlembicAnimationPlaybackTime;
 
    std::vector<StaticMesh>                      mGeishaMeshes;
    std::shared_ptr<Texture>                     mGeishaFaceTexture;
