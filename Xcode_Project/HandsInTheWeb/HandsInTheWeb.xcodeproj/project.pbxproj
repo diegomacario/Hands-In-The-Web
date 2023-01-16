@@ -15,19 +15,13 @@
 		04FC914C2972071C00E43882 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91302972071C00E43882 /* Transform.cpp */; };
 		04FC914D2972071C00E43882 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91312972071C00E43882 /* Utility.cpp */; };
 		04FC914E2972071C00E43882 /* FiniteStateMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91322972071C00E43882 /* FiniteStateMachine.cpp */; };
-		04FC914F2972071C00E43882 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91332972071C00E43882 /* Plane.cpp */; };
-		04FC91502972071C00E43882 /* SimpleMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91342972071C00E43882 /* SimpleMesh.cpp */; };
 		04FC91522972071C00E43882 /* ShaderLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91362972071C00E43882 /* ShaderLoader.cpp */; };
 		04FC91532972071C00E43882 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91372972071C00E43882 /* Game.cpp */; };
 		04FC91542972071C00E43882 /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91382972071C00E43882 /* pch.cpp */; };
 		04FC91552972071C00E43882 /* SceneABC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91392972071C00E43882 /* SceneABC.cpp */; };
-		04FC91562972071C00E43882 /* Track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC913A2972071C00E43882 /* Track.cpp */; };
-		04FC91572972071C00E43882 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC913B2972071C00E43882 /* Ray.cpp */; };
-		04FC91582972071C00E43882 /* TransformTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC913C2972071C00E43882 /* TransformTrack.cpp */; };
 		04FC915A2972071C00E43882 /* GLTFLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC913E2972071C00E43882 /* GLTFLoader.cpp */; };
 		04FC915B2972071C00E43882 /* StaticMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC913F2972071C00E43882 /* StaticMesh.cpp */; };
 		04FC915C2972071C00E43882 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91402972071C00E43882 /* main.cpp */; };
-		04FC915D2972071C00E43882 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91412972071C00E43882 /* Triangle.cpp */; };
 		04FC915E2972071C00E43882 /* Camera3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91422972071C00E43882 /* Camera3.cpp */; };
 		04FC915F2972071C00E43882 /* Quat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91432972071C00E43882 /* Quat.cpp */; };
 		04FC91602972071C00E43882 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04FC91442972071C00E43882 /* window.cpp */; };
@@ -72,19 +66,13 @@
 		04FC91302972071C00E43882 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Transform.cpp; path = ../../src/Transform.cpp; sourceTree = "<group>"; };
 		04FC91312972071C00E43882 /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utility.cpp; path = ../../src/Utility.cpp; sourceTree = "<group>"; };
 		04FC91322972071C00E43882 /* FiniteStateMachine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FiniteStateMachine.cpp; path = ../../src/FiniteStateMachine.cpp; sourceTree = "<group>"; };
-		04FC91332972071C00E43882 /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Plane.cpp; path = ../../src/Plane.cpp; sourceTree = "<group>"; };
-		04FC91342972071C00E43882 /* SimpleMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleMesh.cpp; path = ../../src/SimpleMesh.cpp; sourceTree = "<group>"; };
 		04FC91362972071C00E43882 /* ShaderLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderLoader.cpp; path = ../../src/ShaderLoader.cpp; sourceTree = "<group>"; };
 		04FC91372972071C00E43882 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../../src/Game.cpp; sourceTree = "<group>"; };
 		04FC91382972071C00E43882 /* pch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pch.cpp; path = ../../src/pch.cpp; sourceTree = "<group>"; };
 		04FC91392972071C00E43882 /* SceneABC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneABC.cpp; path = ../../src/SceneABC.cpp; sourceTree = "<group>"; };
-		04FC913A2972071C00E43882 /* Track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Track.cpp; path = ../../src/Track.cpp; sourceTree = "<group>"; };
-		04FC913B2972071C00E43882 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ray.cpp; path = ../../src/Ray.cpp; sourceTree = "<group>"; };
-		04FC913C2972071C00E43882 /* TransformTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TransformTrack.cpp; path = ../../src/TransformTrack.cpp; sourceTree = "<group>"; };
 		04FC913E2972071C00E43882 /* GLTFLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLTFLoader.cpp; path = ../../src/GLTFLoader.cpp; sourceTree = "<group>"; };
 		04FC913F2972071C00E43882 /* StaticMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StaticMesh.cpp; path = ../../src/StaticMesh.cpp; sourceTree = "<group>"; };
 		04FC91402972071C00E43882 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/main.cpp; sourceTree = "<group>"; };
-		04FC91412972071C00E43882 /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Triangle.cpp; path = ../../src/Triangle.cpp; sourceTree = "<group>"; };
 		04FC91422972071C00E43882 /* Camera3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera3.cpp; path = ../../src/Camera3.cpp; sourceTree = "<group>"; };
 		04FC91432972071C00E43882 /* Quat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Quat.cpp; path = ../../src/Quat.cpp; sourceTree = "<group>"; };
 		04FC91442972071C00E43882 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = window.cpp; path = ../../src/window.cpp; sourceTree = "<group>"; };
@@ -95,21 +83,13 @@
 		04FC91662972074600E43882 /* ShaderLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderLoader.h; path = ../../inc/ShaderLoader.h; sourceTree = "<group>"; };
 		04FC91672972074600E43882 /* FiniteStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiniteStateMachine.h; path = ../../inc/FiniteStateMachine.h; sourceTree = "<group>"; };
 		04FC91682972074600E43882 /* StaticMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticMesh.h; path = ../../inc/StaticMesh.h; sourceTree = "<group>"; };
-		04FC91692972074600E43882 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Track.h; path = ../../inc/Track.h; sourceTree = "<group>"; };
-		04FC916A2972074600E43882 /* TransformTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransformTrack.h; path = ../../inc/TransformTrack.h; sourceTree = "<group>"; };
 		04FC916B2972074600E43882 /* pch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pch.h; path = ../../inc/pch.h; sourceTree = "<group>"; };
-		04FC916C2972074600E43882 /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Triangle.h; path = ../../inc/Triangle.h; sourceTree = "<group>"; };
 		04FC916D2972074600E43882 /* sfbxRawVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sfbxRawVector.h; path = ../../inc/sfbxRawVector.h; sourceTree = "<group>"; };
-		04FC916E2972074600E43882 /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Frame.h; path = ../../inc/Frame.h; sourceTree = "<group>"; };
 		04FC916F2972074600E43882 /* VectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorMath.h; path = ../../inc/VectorMath.h; sourceTree = "<group>"; };
 		04FC91702972074600E43882 /* sfbxTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sfbxTypes.h; path = ../../inc/sfbxTypes.h; sourceTree = "<group>"; };
 		04FC91712972074700E43882 /* Camera3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera3.h; path = ../../inc/Camera3.h; sourceTree = "<group>"; };
-		04FC91722972074700E43882 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ray.h; path = ../../inc/Ray.h; sourceTree = "<group>"; };
-		04FC91732972074700E43882 /* SimpleMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleMesh.h; path = ../../inc/SimpleMesh.h; sourceTree = "<group>"; };
 		04FC91742972074700E43882 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../../inc/Utility.h; sourceTree = "<group>"; };
-		04FC91752972074700E43882 /* Interpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Interpolation.h; path = ../../inc/Interpolation.h; sourceTree = "<group>"; };
 		04FC91772972074700E43882 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../inc/Game.h; sourceTree = "<group>"; };
-		04FC91782972074700E43882 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane.h; path = ../../inc/Plane.h; sourceTree = "<group>"; };
 		04FC91792972074700E43882 /* TextureLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureLoader.h; path = ../../inc/TextureLoader.h; sourceTree = "<group>"; };
 		04FC917A2972074700E43882 /* SceneGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneGraph.h; path = ../../inc/SceneGraph.h; sourceTree = "<group>"; };
 		04FC917B2972074700E43882 /* sfbxMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sfbxMeta.h; path = ../../inc/sfbxMeta.h; sourceTree = "<group>"; };
@@ -118,8 +98,6 @@
 		04FC917E2972074700E43882 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = ../../inc/Shader.h; sourceTree = "<group>"; };
 		04FC917F2972074700E43882 /* PlayState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayState.h; path = ../../inc/PlayState.h; sourceTree = "<group>"; };
 		04FC91802972074700E43882 /* AlembicMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlembicMesh.h; path = ../../inc/AlembicMesh.h; sourceTree = "<group>"; };
-		04FC91812972074700E43882 /* AudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioEngine.h; path = ../../inc/AudioEngine.h; sourceTree = "<group>"; };
-		04FC91822972074700E43882 /* AudioSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioSource.h; path = ../../inc/AudioSource.h; sourceTree = "<group>"; };
 		04FC91832972074700E43882 /* GLTFLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLTFLoader.h; path = ../../inc/GLTFLoader.h; sourceTree = "<group>"; };
 		04FC91842972074700E43882 /* WebAlembicViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebAlembicViewer.h; path = ../../inc/WebAlembicViewer.h; sourceTree = "<group>"; };
 		04FC91852972074700E43882 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = State.h; path = ../../inc/State.h; sourceTree = "<group>"; };
@@ -184,19 +162,13 @@
 			isa = PBXGroup;
 			children = (
 				04FC91802972074700E43882 /* AlembicMesh.h */,
-				04FC91812972074700E43882 /* AudioEngine.h */,
-				04FC91822972074700E43882 /* AudioSource.h */,
 				04FC91712972074700E43882 /* Camera3.h */,
 				04FC91672972074600E43882 /* FiniteStateMachine.h */,
-				04FC916E2972074600E43882 /* Frame.h */,
 				04FC91772972074700E43882 /* Game.h */,
 				04FC91832972074700E43882 /* GLTFLoader.h */,
-				04FC91752972074700E43882 /* Interpolation.h */,
 				04FC916B2972074600E43882 /* pch.h */,
-				04FC91782972074700E43882 /* Plane.h */,
 				04FC917F2972074700E43882 /* PlayState.h */,
 				04FC917C2972074700E43882 /* Quat.h */,
-				04FC91722972074700E43882 /* Ray.h */,
 				04FC91862972074700E43882 /* ResourceManager.h */,
 				04FC917A2972074700E43882 /* SceneGraph.h */,
 				04FC917B2972074700E43882 /* sfbxMeta.h */,
@@ -204,15 +176,11 @@
 				04FC91702972074600E43882 /* sfbxTypes.h */,
 				04FC917E2972074700E43882 /* Shader.h */,
 				04FC91662972074600E43882 /* ShaderLoader.h */,
-				04FC91732972074700E43882 /* SimpleMesh.h */,
 				04FC91852972074700E43882 /* State.h */,
 				04FC91682972074600E43882 /* StaticMesh.h */,
 				04FC917D2972074700E43882 /* Texture.h */,
 				04FC91792972074700E43882 /* TextureLoader.h */,
-				04FC91692972074600E43882 /* Track.h */,
 				04FC91872972074700E43882 /* Transform.h */,
-				04FC916A2972074600E43882 /* TransformTrack.h */,
-				04FC916C2972074600E43882 /* Triangle.h */,
 				04FC91742972074700E43882 /* Utility.h */,
 				04FC916F2972074600E43882 /* VectorMath.h */,
 				04FC91842972074700E43882 /* WebAlembicViewer.h */,
@@ -231,22 +199,16 @@
 				04FC913E2972071C00E43882 /* GLTFLoader.cpp */,
 				04FC91402972071C00E43882 /* main.cpp */,
 				04FC91382972071C00E43882 /* pch.cpp */,
-				04FC91332972071C00E43882 /* Plane.cpp */,
 				04FC91452972071C00E43882 /* PlayState.cpp */,
 				04FC91432972071C00E43882 /* Quat.cpp */,
-				04FC913B2972071C00E43882 /* Ray.cpp */,
 				04FC91392972071C00E43882 /* SceneABC.cpp */,
 				04FC912E2972071C00E43882 /* SceneGraph.cpp */,
 				04FC91472972071C00E43882 /* Shader.cpp */,
 				04FC91362972071C00E43882 /* ShaderLoader.cpp */,
-				04FC91342972071C00E43882 /* SimpleMesh.cpp */,
 				04FC913F2972071C00E43882 /* StaticMesh.cpp */,
 				04FC912D2972071C00E43882 /* Texture.cpp */,
 				04FC91462972071C00E43882 /* TextureLoader.cpp */,
-				04FC913A2972071C00E43882 /* Track.cpp */,
 				04FC91302972071C00E43882 /* Transform.cpp */,
-				04FC913C2972071C00E43882 /* TransformTrack.cpp */,
-				04FC91412972071C00E43882 /* Triangle.cpp */,
 				04FC91312972071C00E43882 /* Utility.cpp */,
 				04FC91442972071C00E43882 /* window.cpp */,
 			);
@@ -361,25 +323,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04FC91582972071C00E43882 /* TransformTrack.cpp in Sources */,
 				04FC91622972071C00E43882 /* TextureLoader.cpp in Sources */,
 				04FC91522972071C00E43882 /* ShaderLoader.cpp in Sources */,
 				04FC91952972082800E43882 /* imgui_draw.cpp in Sources */,
 				04FC914E2972071C00E43882 /* FiniteStateMachine.cpp in Sources */,
 				04FC91962972082800E43882 /* imgui_tables.cpp in Sources */,
 				04FC915B2972071C00E43882 /* StaticMesh.cpp in Sources */,
-				04FC915D2972071C00E43882 /* Triangle.cpp in Sources */,
 				04FC91532972071C00E43882 /* Game.cpp in Sources */,
 				04FC915A2972071C00E43882 /* GLTFLoader.cpp in Sources */,
-				04FC91572972071C00E43882 /* Ray.cpp in Sources */,
-				04FC91502972071C00E43882 /* SimpleMesh.cpp in Sources */,
 				04FC91552972071C00E43882 /* SceneABC.cpp in Sources */,
 				04FC914D2972071C00E43882 /* Utility.cpp in Sources */,
 				04FC915F2972071C00E43882 /* Quat.cpp in Sources */,
 				04FC91982972082800E43882 /* imgui_impl_opengl3.cpp in Sources */,
 				04FC915C2972071C00E43882 /* main.cpp in Sources */,
 				04FC918D297207F400E43882 /* stb_image.cpp in Sources */,
-				04FC914F2972071C00E43882 /* Plane.cpp in Sources */,
 				04FC914C2972071C00E43882 /* Transform.cpp in Sources */,
 				04FC914A2972071C00E43882 /* SceneGraph.cpp in Sources */,
 				04FC919F2972084D00E43882 /* cgltf.c in Sources */,
@@ -392,7 +349,6 @@
 				04FC915E2972071C00E43882 /* Camera3.cpp in Sources */,
 				04FC919A2972082800E43882 /* imgui_impl_glfw.cpp in Sources */,
 				04FC91612972071C00E43882 /* PlayState.cpp in Sources */,
-				04FC91562972071C00E43882 /* Track.cpp in Sources */,
 				04FC91602972071C00E43882 /* window.cpp in Sources */,
 				04FC91492972071C00E43882 /* Texture.cpp in Sources */,
 				04FC91542972071C00E43882 /* pch.cpp in Sources */,
