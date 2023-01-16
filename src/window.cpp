@@ -31,17 +31,6 @@ EM_JS(int, getCanvasHeight, (), {
 EM_JS(float, getDevicePixelRatio, (), {
    return window.devicePixelRatio;
 });
-
-EM_JS(float, getBrowserScrollWheelSensitivity, (), {
-   if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1)
-   {
-      return -1.0;
-   }
-   else
-   {
-      return -0.02;
-   }
-});
 #endif
 
 Window::Window(const std::string& title)
@@ -118,7 +107,6 @@ bool Window::initialize()
    mDevicePixelRatio = getDevicePixelRatio();
    width = getCanvasWidth() * mDevicePixelRatio;
    height = getCanvasHeight() * mDevicePixelRatio;
-   mScrollWheelSensitivity = getBrowserScrollWheelSensitivity();
 #else
    width = 1280;
    height = 720;
