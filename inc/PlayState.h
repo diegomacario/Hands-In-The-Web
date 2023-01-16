@@ -4,9 +4,6 @@
 #include "State.h"
 #include "FiniteStateMachine.h"
 #include "Window.h"
-#ifdef ENABLE_AUDIO
-#include "AudioEngine.h"
-#endif
 #include "Shader.h"
 #include "Camera3.h"
 #include "WebAlembicViewer.h"
@@ -18,14 +15,8 @@ class PlayState : public State
 {
 public:
 
-#ifdef ENABLE_AUDIO
-   PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachine,
-             const std::shared_ptr<Window>& window,
-             const std::shared_ptr<AudioEngine>& audioEngine);
-#else
    PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachine,
              const std::shared_ptr<Window>& window);
-#endif
    ~PlayState() = default;
 
    PlayState(const PlayState&) = delete;
@@ -61,10 +52,6 @@ private:
    std::shared_ptr<FiniteStateMachine>          mFSM;
 
    std::shared_ptr<Window>                      mWindow;
-
-#ifdef ENABLE_AUDIO
-   std::shared_ptr<AudioEngine>                 mAudioEngine;
-#endif
 
    Camera3                                      mCamera3;
 

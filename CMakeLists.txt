@@ -5,7 +5,6 @@ project(Hands-In-The-Web)
 include_directories("${CMAKE_SOURCE_DIR}/inc"
                     "${CMAKE_SOURCE_DIR}/dependencies/Alembic/inc/mac"
                     "${CMAKE_SOURCE_DIR}/dependencies/cgltf"
-                    "${CMAKE_SOURCE_DIR}/dependencies/dr_libs"
                     "${CMAKE_SOURCE_DIR}/dependencies/glad"
                     "${CMAKE_SOURCE_DIR}/dependencies/GLFW"
                     "${CMAKE_SOURCE_DIR}/dependencies/glm"
@@ -16,8 +15,6 @@ include_directories("${CMAKE_SOURCE_DIR}/inc"
 
 set(project_headers
     inc/AlembicMesh.h
-    #inc/AudioEngine.h
-    #inc/AudioSource.h
     inc/Camera3.h
     inc/FiniteStateMachine.h
     inc/Frame.h
@@ -52,8 +49,6 @@ set(project_headers
 
 set(project_sources
     src/AlembicMesh.cpp
-    #src/AudioEngine.cpp
-    #src/AudioSource.cpp
     src/Camera3.cpp
     src/FiniteStateMachine.cpp
     src/Game.cpp
@@ -79,7 +74,6 @@ set(project_sources
     src/Utility.cpp
     src/Window.cpp
     dependencies/cgltf/cgltf/cgltf.c
-    dependencies/dr_libs/dr_libs/dr_wav.c
     dependencies/imgui/imgui/imgui.cpp
     dependencies/imgui/imgui/imgui_demo.cpp
     dependencies/imgui/imgui/imgui_draw.cpp
@@ -98,9 +92,6 @@ set(CMAKE_CXX_FLAGS "-std=c++17 -O3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 
 
 # Uncomment this line and the imgui .cpp files above to enable IMGUI
 add_definitions(-DENABLE_IMGUI)
-
-# Uncomment this line and the AudioEngine.cpp, AudioSource.cpp, AudioEngine.h and AudioSource.h files above to enable audio
-#add_definitions(-DENABLE_AUDIO)
 
 add_executable(${PROJECT_NAME} ${project_headers} ${project_sources})
 

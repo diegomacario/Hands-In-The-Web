@@ -5,9 +5,6 @@
 
 Game::Game()
    : mWindow()
-#ifdef ENABLE_AUDIO
-   , mAudioEngine()
-#endif
    , mPlayState()
    , mFSM()
 {
@@ -24,30 +21,13 @@ bool Game::initialize(const std::string& title)
       return false;
    }
 
-   // Initialize the audio engine
-#ifdef ENABLE_AUDIO
-   mAudioEngine = std::make_shared<AudioEngine>();
-   if (!mAudioEngine->initialize())
-   {
-      std::cout << "Error - Game::initialize - Failed to initialize the audio manager" << "\n";
-      return false;
-   }
-#endif
-
    // Create the FSM
    mFSM = std::make_shared<FiniteStateMachine>();
 
    // Initialize the states
    std::unordered_map<std::string, std::shared_ptr<State>> mStates;
 
-#ifdef ENABLE_AUDIO
-   mPlayState = std::make_shared<PlayState>(mFSM,
-                                            mWindow,
-                                            mAudioEngine);
-#else
-   mPlayState = std::make_shared<PlayState>(mFSM,
-                                            mWindow);
-#endif
+   mPlayState = std::make_shared<PlayState>(mFSM, mWindow);
 
    mStates["play"] = mPlayState;
 

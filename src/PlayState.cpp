@@ -20,19 +20,11 @@
 #include "TextureLoader.h"
 #include "Transform.h"
 
-#ifdef ENABLE_AUDIO
-PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachine,
-                     const std::shared_ptr<Window>&             window,
-                     const std::shared_ptr<AudioEngine>&        audioEngine)
-#else
+
 PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachine,
                      const std::shared_ptr<Window>&             window)
-#endif
    : mFSM(finiteStateMachine)
    , mWindow(window)
-#ifdef ENABLE_AUDIO
-   , mAudioEngine(audioEngine)
-#endif
    , mCamera3(0.85f, 10.0f, glm::vec3(0.0f, 1.1f, 0.0), Q::angleAxis(glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f, 45.0f, 1280.0f / 720.0f, 0.1f, 130.0f, 0.25f)
 {
    // Initialize the static mesh with normals shader
@@ -44,17 +36,6 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
    mBlinnPhongShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/blinn_phong.vert",
                                                                                      "resources/shaders/blinn_phong.frag");
    configureLights(mBlinnPhongShader);
-
-   // Set the listener data
-#ifdef ENABLE_AUDIO
-   const Q::quat& cameraOrientation = mCamera3.getOrientation();
-   glm::vec3      viewVector        = cameraOrientation * glm::vec3(0.0f, 0.0f, -1.0f);
-   glm::vec3      cameraUp          = cameraOrientation * glm::vec3(0.0f, 1.0f, 0.0f);
-   mAudioEngine->setListenerData(mCamera3.getPosition(), glm::vec3(0.0f, 0.0f, 0.0f), viewVector, cameraUp);
-
-   // Load sounds
-   //mAudioEngine->loadSound("resources/sounds/....wav");
-#endif
 
    loadHands();
    loadGeisha();
@@ -111,15 +92,6 @@ void PlayState::processInput()
 
 void PlayState::update(float deltaTime)
 {
-   // Update the audio engine
-   const Q::quat& cameraOrientation = mCamera3.getOrientation();
-   glm::vec3      viewVector        = cameraOrientation * glm::vec3(0.0f, 0.0f, -1.0f);
-#ifdef ENABLE_AUDIO
-   glm::vec3      cameraUp          = cameraOrientation * glm::vec3(0.0f, 1.0f, 0.0f);
-   mAudioEngine->setListenerData(mCamera3.getPosition(), glm::vec3(0.0f, 0.0f, 0.0f), viewVector, cameraUp);
-   mAudioEngine->update();
-#endif
-
    // Update the hands
    mAlembicAnimationPlaybackTime += deltaTime * mPlaybackSpeed;
    if (mAlembicAnimationPlaybackTime > mAlembicAnimationEndTime)

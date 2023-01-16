@@ -2,9 +2,6 @@
 #define GAME_H
 
 #include "Window.h"
-#ifdef ENABLE_AUDIO
-#include "AudioEngine.h"
-#endif
 #include "PlayState.h"
 #include "FiniteStateMachine.h"
 
@@ -31,10 +28,6 @@ public:
 private:
 
    std::shared_ptr<Window>                 mWindow;
-
-#ifdef ENABLE_AUDIO
-   std::shared_ptr<AudioEngine>            mAudioEngine;
-#endif
 
    std::shared_ptr<PlayState>              mPlayState;
 

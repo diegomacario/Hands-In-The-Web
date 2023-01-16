@@ -79,15 +79,6 @@
     <ClCompile Include="..\src\PlayState.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\AudioSource.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\AudioEngine.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dependencies\dr_libs\dr_libs\dr_wav.c">
-      <Filter>dr_libs\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Utility.cpp">
       <Filter>Hands-In-The-Web\Source Files\Math</Filter>
     </ClCompile>
@@ -207,15 +198,6 @@
     <ClInclude Include="..\inc\PlayState.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\AudioSource.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\AudioEngine.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\dependencies\dr_libs\dr_libs\dr_wav.h">
-      <Filter>dr_libs\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\Utility.h">
       <Filter>Hands-In-The-Web\Header Files\Math</Filter>
     </ClInclude>
@@ -319,15 +301,6 @@
     </Filter>
     <Filter Include="Hands-In-The-Web\Source Files\GLTF">
       <UniqueIdentifier>{15bc05b7-8bc3-4c1c-8aea-143e188e7ecb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dr_libs">
-      <UniqueIdentifier>{78763fb3-48c6-4f11-ae98-a2f26f635d56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dr_libs\Header Files">
-      <UniqueIdentifier>{6f20987a-c71a-48f8-b188-f5e64c19620f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dr_libs\Source Files">
-      <UniqueIdentifier>{25fc40ef-e84a-4ba1-947e-83eb8e31dc63}</UniqueIdentifier>
     </Filter>
     <Filter Include="Hands-In-The-Web\Header Files\Physics">
       <UniqueIdentifier>{ea7ed313-6963-45ff-8c96-bd00116ea60e}</UniqueIdentifier>
