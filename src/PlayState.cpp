@@ -262,7 +262,7 @@ void PlayState::userInterface()
    ImGui::SetNextWindowPos(ImVec2(10.0f, 10.0f), ImGuiCond_Appearing);
 
    char title[64];
-   snprintf(title, 32, "Handy (%.1f FPS)###Handy", ImGui::GetIO().Framerate);
+   snprintf(title, 32, "Hands In The Web (%.1f FPS)###HandsInTheWeb", ImGui::GetIO().Framerate);
    ImGui::Begin(title, nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize);
 
    ImGui::Text("The animation you see here was motion-captured using a\n"
