@@ -55,23 +55,11 @@
     <ClCompile Include="..\src\Transform.cpp">
       <Filter>Hands-In-The-Web\Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Track.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\TransformTrack.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\dependencies\cgltf\cgltf\cgltf.c">
       <Filter>cgltf\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\GLTFLoader.cpp">
       <Filter>Hands-In-The-Web\Source Files\GLTF</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Ray.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Triangle.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Camera3.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
@@ -83,12 +71,6 @@
       <Filter>Hands-In-The-Web\Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="..\src\StaticMesh.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Plane.cpp">
-      <Filter>Hands-In-The-Web\Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\SimpleMesh.cpp">
       <Filter>Hands-In-The-Web\Source Files\Base</Filter>
     </ClCompile>
     <ClCompile Include="..\dependencies\imgui\imgui\imgui_tables.cpp">
@@ -168,29 +150,11 @@
     <ClInclude Include="..\inc\Transform.h">
       <Filter>Hands-In-The-Web\Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\Frame.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Interpolation.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Track.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\TransformTrack.h">
-      <Filter>Hands-In-The-Web\Header Files\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="..\dependencies\cgltf\cgltf\cgltf.h">
       <Filter>cgltf\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\GLTFLoader.h">
       <Filter>Hands-In-The-Web\Header Files\GLTF</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Ray.h">
-      <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Triangle.h">
-      <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\Camera3.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
@@ -202,12 +166,6 @@
       <Filter>Hands-In-The-Web\Header Files\Math</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\StaticMesh.h">
-      <Filter>Hands-In-The-Web\Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\Plane.h">
-      <Filter>Hands-In-The-Web\Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\SimpleMesh.h">
       <Filter>Hands-In-The-Web\Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\SceneGraph.h">
@@ -281,9 +239,6 @@
     <Filter Include="Hands-In-The-Web\Header Files\Math">
       <UniqueIdentifier>{5faa0a4a-724c-4990-8f17-e2fc0a02df0b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Hands-In-The-Web\Header Files\Animation">
-      <UniqueIdentifier>{2f1c2aab-3dba-4fc6-b593-3db84c628e44}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Hands-In-The-Web\Header Files\GLTF">
       <UniqueIdentifier>{e19a1c59-38db-4803-866e-c82d941736b6}</UniqueIdentifier>
     </Filter>
@@ -296,17 +251,8 @@
     <Filter Include="Hands-In-The-Web\Source Files\Math">
       <UniqueIdentifier>{5e6627a8-3e2f-4380-bd2b-a691b9fc952f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Hands-In-The-Web\Source Files\Animation">
-      <UniqueIdentifier>{6970468a-f448-42eb-879d-892784e8da63}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Hands-In-The-Web\Source Files\GLTF">
       <UniqueIdentifier>{15bc05b7-8bc3-4c1c-8aea-143e188e7ecb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Hands-In-The-Web\Header Files\Physics">
-      <UniqueIdentifier>{ea7ed313-6963-45ff-8c96-bd00116ea60e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Hands-In-The-Web\Source Files\Physics">
-      <UniqueIdentifier>{20a5dc86-88e4-4bc7-aa9e-8c5069027b61}</UniqueIdentifier>
     </Filter>
     <Filter Include="Hands-In-The-Web\Header Files\Alembic">
       <UniqueIdentifier>{f29d7822-81bd-4857-87ca-7923d0aa3006}</UniqueIdentifier>

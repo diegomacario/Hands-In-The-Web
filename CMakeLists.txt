@@ -17,15 +17,11 @@ set(project_headers
     inc/AlembicMesh.h
     inc/Camera3.h
     inc/FiniteStateMachine.h
-    inc/Frame.h
     inc/Game.h
     inc/GLTFLoader.h
-    inc/Interpolation.h
     inc/pch.h
-    inc/Plane.h
     inc/PlayState.h
     inc/Quat.h
-    inc/Ray.h
     inc/ResourceManager.h
     inc/SceneGraph.h
     inc/sfbxMeta.h
@@ -33,15 +29,11 @@ set(project_headers
     inc/sfbxTypes.h
     inc/Shader.h
     inc/ShaderLoader.h
-    inc/SimpleMesh.h
     inc/State.h
     inc/StaticMesh.h
     inc/Texture.h
     inc/textureLoader.h
-    inc/Track.h
     inc/Transform.h
-    inc/TransformTrack.h
-    inc/Triangle.h
     inc/Utility.h
     inc/VectorMath.h
     inc/WebAlembicViewer.h
@@ -55,22 +47,16 @@ set(project_sources
     src/GLTFLoader.cpp
     src/main.cpp
     src/pch.cpp
-    src/Plane.cpp
     src/PlayState.cpp
     src/Quat.cpp
-    src/Ray.cpp
     src/SceneABC.cpp
     src/SceneGraph.cpp
     src/Shader.cpp
     src/ShaderLoader.cpp
-    src/SimpleMesh.cpp
     src/StaticMesh.cpp
     src/Texture.cpp
     src/TextureLoader.cpp
-    src/Track.cpp
     src/Transform.cpp
-    src/TransformTrack.cpp
-    src/Triangle.cpp
     src/Utility.cpp
     src/Window.cpp
     dependencies/cgltf/cgltf/cgltf.c
