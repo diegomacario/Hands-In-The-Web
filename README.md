@@ -1,6 +1,6 @@
 # Hands-In-The-Web
 
-An example of how to bring mocap data from handy to the web.
+An example of how to bring mocap data captured with Shopify's [handy](https://github.com/Shopify/handy) tool to the web.
 
 ## Credit
 
