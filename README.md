@@ -1,5 +1,9 @@
 # Hands-In-The-Web
 
+<p align="center">
+ <img alt="Header" src="https://github.com/diegomacario/Hands-In-The-Web/blob/main/readme_images/social_preview.png">
+</p>
+
 An example of how to bring mocap data captured with Shopify's [handy](https://github.com/Shopify/handy) tool to the web.
 
 ## Credit
