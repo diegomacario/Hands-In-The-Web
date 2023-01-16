@@ -33,7 +33,7 @@ PlayState::PlayState(const std::shared_ptr<FiniteStateMachine>& finiteStateMachi
 #ifdef ENABLE_AUDIO
    , mAudioEngine(audioEngine)
 #endif
-   , mCamera3(0.8f, 10.0f, glm::vec3(0.0f, 1.25f, 0.0), Q::angleAxis(glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f, 45.0f, 1280.0f / 720.0f, 0.1f, 130.0f, 0.25f)
+   , mCamera3(0.85f, 10.0f, glm::vec3(0.0f, 1.1f, 0.0), Q::angleAxis(glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f, 45.0f, 1280.0f / 720.0f, 0.1f, 130.0f, 0.25f)
 {
    // Initialize the static mesh with normals shader
    mStaticMeshWithNormalsShader = ResourceManager<Shader>().loadUnmanagedResource<ShaderLoader>("resources/shaders/static_mesh_with_normals.vert",
@@ -201,7 +201,7 @@ void PlayState::loadHands()
 
    std::tuple<double, double> timeRange = mScene->getTimeRange();
    mAlembicAnimationStartTime    = static_cast<float>(std::get<0>(timeRange));
-   mAlembicAnimationEndTime      = static_cast<float>(std::get<1>(timeRange)) - 1.0f;
+   mAlembicAnimationEndTime      = static_cast<float>(std::get<1>(timeRange)) - 0.5f;
    mAlembicAnimationDuration     = mAlembicAnimationEndTime - mAlembicAnimationStartTime;
    mAlembicAnimationPlaybackTime = mAlembicAnimationStartTime;
 }
@@ -401,6 +401,6 @@ void PlayState::renderSamurai()
 
 void PlayState::resetCamera()
 {
-   mCamera3.reposition(0.8f, 10.0f, glm::vec3(0.0f, 1.25f, 0.0f), Q::quat(), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f);
+   mCamera3.reposition(0.85f, 10.0f, glm::vec3(0.0f, 1.1f, 0.0f), Q::quat(), glm::vec3(0.0f, 0.0f, 0.0f), 0.5f, 10.0f, -90.0f, 90.0f);
    mCamera3.processMouseMovement(180.0f / 0.25f, 0.0f);
 }
