@@ -27,6 +27,7 @@ This project was written using C++ and OpenGL. It was then compiled to WebAssemb
 - [stb_image](https://github.com/nothings/stb) is used to load textures.
 - [cgltf](https://github.com/jkuhlmann/cgltf) is used to parse glTF files.
 - [Imath](https://github.com/AcademySoftwareFoundation/Imath) and [Alembic](https://github.com/alembic/alembic) are used to load motion capture data.
+- [handy](https://github.com/Shopify/handy) was used to mocap.
 
 The code that reads and plays Alembic files was written by [i-saint](https://github.com/i-saint). It can be found [here](https://github.com/i-saint/WebAlembicViewer).
 
