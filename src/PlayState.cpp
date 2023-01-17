@@ -284,25 +284,13 @@ void PlayState::renderHands()
 
    if (mCharacterIndex == 0) // Geisha
    {
-      // Grey
-      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd9d2d7));
-      // White
-      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xf2eeef));
-      // Pink
-      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xd99aa3));
       // Red
       mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xaf3d4d));
    }
    else // Samurai
    {
-      // Super light gold
-      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xfff8f1));
-      // Light gold
-      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0xffd9ab));
       // Blue
       mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0x73b1ff));
-      // Wine
-      //mBlinnPhongShader->setUniformVec3("diffuseColor", Utility::hexToColor(0x6f0022));
    }
 
    glFrontFace(GL_CW);
