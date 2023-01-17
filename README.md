@@ -6,6 +6,16 @@
 
 An example of how to bring mocap data captured with Shopify's [handy](https://github.com/Shopify/handy) tool to the web.
 
+You can run it by clicking [this](https://diegomacario.github.io/Hands-In-The-Web) link.
+
+## Explanation
+
+The animation you see in the live demo was motion-captured using a Meta Quest 2 headset. The hands were captured using the hand-tracking feature of the headset, and the head simply follows the transform of the headset itself.
+
+It's amazing how VR headsets are becoming capable motion capture platforms. With the Meta Quest Pro's eye and face tracking one could even capture facial expressions with high fidelity.
+
+If you own a Meta Quest 1, 2 or Pro and are interested in using them for motion capture, check out Shopify's [handy](https://github.com/Shopify/handy) tool.
+
 ## Technical details
 
 This project was written using C++ and OpenGL. It was then compiled to WebAssembly using [Emscripten](https://emscripten.org). The open source libraries it uses and their purposes are the following:
