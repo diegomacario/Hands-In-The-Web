@@ -224,7 +224,9 @@ void PlayState::loadSamurai()
 
 #ifdef __EMSCRIPTEN__
 EM_JS(void, openReadme, (), {
-   window.open("https://github.com/Shopify/handy");
+   setTimeout(() => {
+      window.open('https://github.com/Shopify/handy', '_top');
+   })
 });
 #endif
 
